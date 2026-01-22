@@ -1,0 +1,71 @@
+/* Custom Filament Premium Styles */
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+
+.fi-btn {
+    border-radius: 0.5rem !important;
+    /* Normal rounded for professional feel */
+}
+
+/* Light Mode specific - ensures clean contrast */
+html:not(.dark) .fi-main-ctn {
+    background-color: #f8fafc !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #1e3a8a !important;
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2) !important;
+}
+
+.fi-topbar {
+    border-bottom: 2px solid #1e3a8a !important;
+}
+
+/* --- DARK MODE SUPPORT --- */
+
+.dark .fi-main-ctn {
+    background-color: #0f172a !important;
+    /* Slate 900 */
+}
+
+.dark .fi-topbar {
+    background-color: #1e293b !important;
+    /* Slate 800 */
+    border-bottom: 2px solid #1e40af !important;
+}
+
+.dark .fi-section,
+.dark .fi-ta-ctn,
+.dark .fi-ta-content,
+.dark .fi-modal-window {
+    background-color: #1e293b !important;
+    /* Slate 800 */
+    color: #f8fafc !important;
+    /* White-ish text */
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #334155 !important;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+}
+
+.dark .fi-ta-header-cell-label,
+.dark .fi-ta-text-item,
+.dark .fi-fo-field-wrp-label,
+.dark .fi-section-header-heading {
+    color: #f8fafc !important;
+}
