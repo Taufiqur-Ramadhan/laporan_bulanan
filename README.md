@@ -1,74 +1,74 @@
-# SIGAT - Sistem Informasi Input Kegiatan
+# SIGAT - Sistem Informasi Pelaporan Kegiatan
 
-SIGAT adalah aplikasi berbasis web yang dibangun menggunakan **Laravel 12** dan **Filament PHP v3** untuk manajemen laporan kegiatan bulanan secara efisien dan terstruktur.
+SIGAT adalah sistem informasi berbasis web yang dikembangkan menggunakan **Laravel 12** dan **Filament PHP v3**. Aplikasi ini dirancang untuk mengelola laporan kegiatan bulanan secara efisien, terstruktur, dan profesional.
 
-## ✨ Fitur Utama
+## Fitur Utama
 
-- **Dashboard Statistik**: Visualisasi data kegiatan dan anggaran secara real-time.
-- **Manajemen Kegiatan**: Input, edit, dan hapus data kegiatan dengan mudah.
-- **Peta Interaktif (Leaflet)**: 
-    - Penentuan lokasi kegiatan menggunakan map.
-    - Fitur **Pencarian Lokasi** di seluruh Indonesia yang otomatis memindahkan marker.
-- **Sistem Revisi & Verifikasi**: Alur kerja profesional antara Admin dan Anggota untuk persetujuan laporan.
-- **Ekspor Data**: Mendukung ekspor laporan ke format **Excel** dan **PDF**.
-- **Profil Pengguna**:
-    - Edit profil (Nama, Email, Password).
-    - Unggah foto profil (Avatar) dengan fitur pemotong gambar melingkar.
-- **Hak Akses (Role)**: Pembagian peran antara Admin dan Anggota.
+- **Dasbor Statistik**: Visualisasi data kegiatan dan alokasi anggaran secara real-time.
+- **Manajemen Laporan**: Pengelolaan data kegiatan yang komprehensif (input, pembaruan, dan penghapusan).
+- **Integrasi Peta Interaktif (Leaflet)**: 
+    - Penentuan lokasi geometris kegiatan melalui antarmuka peta.
+    - Fitur pencarian lokasi otomatis untuk presisi koordinat.
+- **Sistem Verifikasi Berjenjang**: Alur kerja persetujuan laporan antara administrator dan staf untuk menjamin akurasi data.
+- **Ekspor Dokumen**: Penghasilan laporan dalam format **Excel** dan **PDF**.
+- **Manajemen Profil**:
+    - Pembaruan identitas pengguna (Nama, Email, Keamanan Akun).
+    - Fitur unggah foto profil dengan pengolahan citra profesional.
+- **Manajemen Hak Akses**: Pembagian peran dan otorisasi yang jelas bagi Admin dan Anggota.
 
-## 🚀 Teknologi yang Digunakan
+## Teknologi Utama
 
-- **Framework**: [Laravel 12](https://laravel.com)
-- **Admin Panel**: [Filament PHP v3](https://filamentphp.com)
-- **Maps**: [Leaflet.js](https://leafletjs.com) & [Dotswan Map Picker](https://github.com/dotswan/filament-map-picker)
-- **Geocoding**: Nominatim (OpenStreetMap)
-- **UI Components**: Tailwind CSS & Alpine.js
+- **Framework Utama**: [Laravel 12](https://laravel.com)
+- **Panel Administrasi**: [Filament PHP v3](https://filamentphp.com)
+- **Pemetaan**: [Leaflet.js](https://leafletjs.com) & [Dotswan Map Picker](https://github.com/dotswan/filament-map-picker)
+- **Layanan Geocoding**: Nominatim (OpenStreetMap)
+- **Antarmuka Pengguna**: Tailwind CSS & Alpine.js
 
-## 🛠️ Instalasi
+## Panduan Instalasi
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lokal:
+Silakan ikuti prosedur berikut untuk melakukan deployment lokal:
 
-1. **Clone repository**
+1. **Kloning Repositori**
    ```bash
    git clone https://github.com/Taufiqur-Ramadhan/laporan_bulanan.git
    cd laporan_bulanan
    ```
 
-2. **Instal dependensi PHP**
+2. **Instalasi Dependensi PHP**
    ```bash
    composer install
    ```
 
-3. **Instal dependensi JavaScript**
+3. **Instalasi Dependensi Aset**
    ```bash
    npm install && npm run build
    ```
 
-4. **Konfigurasi Environment**
+4. **Konfigurasi Lingkungan**
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
-5. **Setup Database**
-   Atur koneksi DB di file `.env`, lalu jalankan migrasi:
+5. **Konfigurasi Basis Data**
+   Konfigurasikan koneksi database pada berkas `.env`, kemudian jalankan migrasi:
    ```bash
    php artisan migrate --seed
    ```
 
-6. **Storage Link**
+6. **Tautan Penyimpanan (Storage Link)**
    ```bash
    php artisan storage:link
    ```
 
-7. **Jalankan Aplikasi**
+7. **Menjalankan Server Pengembangan**
    ```bash
    php artisan serve
    ```
 
-## 🤝 Kontribusi
+## Kontribusi
 
-Jika Anda ingin berkontribusi dalam pengembangan aplikasi ini, silakan lakukan Pull Request atau buka Issue.
+Kami menerima kontribusi untuk pengembangan sistem ini. Silakan ajukan Pull Request atau laporkan kendala melalui fitur Issue pada repositori ini.
 
 ---
 Dikembangkan oleh [Taufiqur-Ramadhan](https://github.com/Taufiqur-Ramadhan)
