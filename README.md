@@ -4,17 +4,21 @@ SIGAT adalah sistem informasi berbasis web yang dikembangkan menggunakan **Larav
 
 ## Fitur Utama
 
-- **Dasbor Statistik**: Visualisasi data kegiatan dan alokasi anggaran secara real-time.
-- **Manajemen Laporan**: Pengelolaan data kegiatan yang komprehensif (input, pembaruan, dan penghapusan).
-- **Integrasi Peta Interaktif (Leaflet)**: 
-    - Penentuan lokasi geometris kegiatan melalui antarmuka peta.
-    - Fitur pencarian lokasi otomatis untuk presisi koordinat.
-- **Sistem Verifikasi Berjenjang**: Alur kerja persetujuan laporan antara administrator dan staf untuk menjamin akurasi data.
-- **Ekspor Dokumen**: Penghasilan laporan dalam format **Excel** dan **PDF**.
-- **Manajemen Profil**:
-    - Pembaruan identitas pengguna (Nama, Email, Keamanan Akun).
-    - Fitur unggah foto profil dengan pengolahan citra profesional.
-- **Manajemen Hak Akses**: Pembagian peran dan otorisasi yang jelas bagi Admin dan Anggota.
+### 1. Fitur Umum
+- **Dasbor Statistik**: Visualisasi data kegiatan dan alokasi anggaran secara real-time untuk gambaran menyeluruh.
+- **Integrasi Peta Interaktif**: Penentuan lokasi kegiatan menggunakan Leaflet.js dengan fitur pencarian lokasi otomatis.
+- **Manajemen Profil**: Pembaruan informasi akun dan unggah foto profil dengan sistem pengolahan citra.
+- **Ekspor Dokumen**: Penghasilan laporan digital dalam format **Excel** dan **PDF**.
+
+### 2. Fitur Administrator
+- **Manajemen Pengguna**: Pengaturan akun pengguna dan pembagian peran (Role).
+- **Validasi Laporan**: Melakukan verifikasi, persetujuan, atau pengembalian laporan untuk revisi.
+- **Pemantauan Anggaran**: Monitoring total anggaran kegiatan di seluruh unit atau anggota.
+
+### 3. Fitur Anggota (User)
+- **Pelaporan Kegiatan**: Input data kegiatan bulanan lengkap dengan koordinat lokasi dan dokumentasi.
+- **Manajemen Revisi**: Melakukan perbaikan laporan berdasarkan catatan verifikasi dari Admin.
+- **Riwayat Pelaporan**: Akses terhadap seluruh data kegiatan yang telah dilaporkan sebelumnya.
 
 ## Teknologi Utama
 
