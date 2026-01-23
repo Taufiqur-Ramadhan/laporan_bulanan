@@ -1,4 +1,4 @@
-# SIGAT - Sistem Informasi Pelaporan Kegiatan
+# SIGAT - Sistem Input Kegiatan
 
 SIGAT adalah sistem informasi berbasis web yang dikembangkan menggunakan **Laravel 12** dan **Filament PHP v3**. Aplikasi ini dirancang untuk mengelola laporan kegiatan bulanan secara efisien, terstruktur, dan profesional.
 
