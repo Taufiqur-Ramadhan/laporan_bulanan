@@ -43,6 +43,10 @@ class AdminPanelProvider extends PanelProvider
                 fn () => new \Illuminate\Support\HtmlString('<link rel="stylesheet" href="' . asset('css/custom-filament.css') . '">'),
             )
             ->renderHook(
+                'panels::auth.login.form.before',
+                fn () => view('filament.components.google-login-button'),
+            )
+            ->renderHook(
                 'panels::body.end',
                 fn () => view('filament.components.footer'),
             )

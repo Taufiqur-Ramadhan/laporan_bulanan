@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasAvatar
         'password',
         'role',
         'avatar_url',
+        'google_id',
     ];
 
     public function getFilamentAvatarUrl(): ?string
