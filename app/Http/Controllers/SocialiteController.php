@@ -32,6 +32,16 @@ class SocialiteController extends Controller
             $user->update([
                 'google_id' => $googleUser->id,
             ]);
+            
+            // Resend OTP if not verified
+            if (!$user->email_verified_at) {
+                $otp = rand(100000, 999999);
+                $user->update([
+                    'otp_code' => $otp,
+                    'otp_expires_at' => now()->addMinutes(10),
+                ]);
+                $user->notify(new SendOTPNotification($otp));
+            }
         } else {
             $otp = rand(100000, 999999);
             
@@ -41,7 +51,7 @@ class SocialiteController extends Controller
                 'google_id' => $googleUser->id,
                 'password' => bcrypt(Str::random(16)),
                 'role' => User::ROLE_ANGGOTA,
-                'email_verified_at' => null, // Set to null until OTP verified
+                'email_verified_at' => null,
                 'otp_code' => $otp,
                 'otp_expires_at' => now()->addMinutes(10),
             ]);

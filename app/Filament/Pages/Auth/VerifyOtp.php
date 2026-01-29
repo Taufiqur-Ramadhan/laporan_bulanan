@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages\Auth;
 
+use App\Notifications\SendOTPNotification;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -20,6 +21,31 @@ class VerifyOtp extends Page
     protected static bool $shouldRegisterNavigation = false;
 
     public ?array $data = [];
+
+    public function hasLogo(): bool
+    {
+        return false;
+    }
+
+    public function hasFullWidthFormActions(): bool
+    {
+        return true;
+    }
+
+    public function getLogoUrl(): ?string
+    {
+        return null;
+    }
+
+    public function getLogoHeight(): ?string
+    {
+        return '2rem';
+    }
+
+    public function getBrandName(): string
+    {
+        return config('app.name');
+    }
 
     public function mount(): void
     {
@@ -69,12 +95,43 @@ class VerifyOtp extends Page
         }
     }
 
+    public function resendOtp(): void
+    {
+        try {
+            $user = Auth::user();
+            $otp = rand(100000, 999999);
+
+            $user->update([
+                'otp_code' => $otp,
+                'otp_expires_at' => now()->addMinutes(10),
+            ]);
+
+            $user->notify(new SendOTPNotification($otp));
+
+            Notification::make()
+                ->title('Kode OTP baru telah dikirim ke email Anda.')
+                ->success()
+                ->send();
+        } catch (\Exception $e) {
+            Notification::make()
+                ->title('Gagal mengirim email: ' . $e->getMessage())
+                ->danger()
+                ->persistent()
+                ->send();
+        }
+    }
+
     protected function getFormActions(): array
     {
         return [
             Action::make('verify')
                 ->label('Verifikasi')
                 ->submit('verify'),
+                
+            Action::make('resendOtp')
+                ->label('Kirim Ulang Kode')
+                ->color('gray')
+                ->action('resendOtp'),
         ];
     }
 

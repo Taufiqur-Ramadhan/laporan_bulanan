@@ -13,10 +13,6 @@ class BudgetChart extends ChartWidget
     {
         $query = \App\Models\Kegiatan::query();
 
-        if (! auth()->user()->isAdmin()) {
-            $query->where('user_id', auth()->id());
-        }
-
         $data = $query->selectRaw('SUM(anggaran) as total, MONTH(created_at) as month')
             ->whereYear('created_at', date('Y'))
             ->groupBy('month')
