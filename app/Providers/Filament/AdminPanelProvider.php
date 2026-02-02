@@ -33,8 +33,8 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(fn () => view('filament.components.brand'))
             ->brandLogoHeight('3.5rem')
             ->colors([
-                'primary' => '#1e3a8a',
-                'success' => '#059669',
+                'primary' => Color::Indigo,
+                'success' => Color::Emerald,
             ])
             ->font('Inter')
             ->topNavigation()
@@ -58,8 +58,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\AccountWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
