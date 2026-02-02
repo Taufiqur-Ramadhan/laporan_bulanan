@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.10.1",
         "phpoffice/phpspreadsheet": "*",
         "phpoffice/phpword": "^1.4",
-        "pxlrbt/filament-excel": "^2.5"
+        "pxlrbt/filament-excel": "^2.5",
+        "spatie/laravel-activitylog": "^4.11"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -92,7 +93,9 @@
         },
         "audit": {
             "ignore": [
-                "PKSA-z3gr-8qht-p93v"
+                "PKSA-z3gr-8qht-p93v",
+                "PKSA-rkkf-636k-qjb3",
+                "PKSA-4s4z-t146-6123"
             ]
         }
     },
