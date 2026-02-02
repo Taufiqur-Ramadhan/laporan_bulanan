@@ -27,7 +27,7 @@
                         Selamat {{ \Carbon\Carbon::now()->translatedFormat('H') < 11 ? 'Pagi' : (\Carbon\Carbon::now()->translatedFormat('H') < 15 ? 'Siang' : (\Carbon\Carbon::now()->translatedFormat('H') < 19 ? 'Sore' : 'Malam')) }}, {{ $this->getUser()->name }}!
                     </h2>
                     <p class="mt-1 text-sm font-medium text-indigo-100 md:text-base opacity-90">
-                        Selamat datang kembali di sistem **SIGAT**. Anda login sebagai <span class="rounded-lg bg-white/20 px-2 py-0.5 text-xs uppercase tracking-wider font-bold">{{ $this->getUser()->role }}</span>.
+                        Selamat datang kembali di sistem SIGAT. Anda login sebagai <span class="rounded-lg bg-white/20 px-2 py-0.5 text-xs uppercase tracking-wider font-bold">{{ $this->getUser()->role }}</span>.
                     </p>
                     <div class="mt-4 flex items-center gap-4">
                         <div class="flex items-center gap-2 text-xs text-white/80">

@@ -18,8 +18,8 @@ class StatsOverview extends BaseWidget
         $totalKegiatan = (clone $query)->count();
         $totalAnggaran = (clone $query)->sum('anggaran');
         
-        // Pagu Anggaran (Contoh: 1 Miliar, silakan disesuaikan)
-        $paguAnggaran = 1000000000; 
+        // Mengambil Pagu Anggaran dari database berdasarkan tahun berjalan
+        $paguAnggaran = \App\Models\Budget::where('year', date('Y'))->first()?->amount ?? 1000000000; 
         $sisaAnggaran = $paguAnggaran - $totalAnggaran;
 
         return [
