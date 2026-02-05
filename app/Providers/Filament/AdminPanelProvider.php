@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('dashboards')
             ->login()
             ->registration()
+            ->passwordReset()
             ->profile(\App\Filament\Pages\EditProfile::class)
             ->brandName('SIGAT - Sistem Input Kegiatan')
             ->brandLogo(fn () => view('filament.components.brand'))
