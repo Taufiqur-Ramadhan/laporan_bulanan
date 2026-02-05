@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('dashboards')
             ->login()
-            ->registration()
+            ->registration(\App\Filament\Pages\Auth\CustomRegister::class)
             ->passwordReset()
             ->profile(\App\Filament\Pages\EditProfile::class)
             ->brandName('SIGAT - Sistem Input Kegiatan')
