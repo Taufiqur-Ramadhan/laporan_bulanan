@@ -65,6 +65,6 @@ class SocialiteController extends Controller
             return redirect()->route('filament.admin.pages.auth.verify-otp');
         }
 
-        return redirect()->intended('/dashboards');
+        return redirect()->to('/dashboards/auth/login-success');
     }
 }

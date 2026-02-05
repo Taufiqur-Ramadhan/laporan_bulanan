@@ -86,7 +86,7 @@ class VerifyOtp extends Page
                 ->success()
                 ->send();
 
-            redirect()->intended('/dashboards');
+            return redirect()->to('/dashboards/auth/login-success');
         } else {
             Notification::make()
                 ->title('Kode OTP salah atau sudah kedaluwarsa.')
