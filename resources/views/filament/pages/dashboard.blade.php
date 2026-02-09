@@ -134,9 +134,9 @@
             <header class="h-16 bg-white dark:bg-[#1a1630] border-b border-[#e9e7f3] dark:border-[#2d284d] flex items-center justify-between px-8 shrink-0">
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2 text-sm text-[#594c9a] dark:text-[#a397e0]">
-                        <span>Root</span>
-                        <span class="material-symbols-outlined text-sm">chevron_right</span>
-                        <span class="text-[#100d1b] dark:text-white font-semibold">Admin Dashboard</span>
+                        <span class="font-medium">Pages</span>
+                        <span class="text-[#594c9a] dark:text-[#a199c9] text-xs">/</span>
+                        <span class="text-[#100d1b] dark:text-white font-bold">Dashboard</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-6">
