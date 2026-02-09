@@ -9,6 +9,8 @@ use Filament\Pages\Auth\EditProfile as BaseEditProfile;
 
 class EditProfile extends BaseEditProfile
 {
+    protected static string $view = 'filament.pages.custom-profile';
+
     public function form(Form $form): Form
     {
         return $form
@@ -20,8 +22,20 @@ class EditProfile extends BaseEditProfile
                     ->directory('avatars'),
                 $this->getNameFormComponent(),
                 $this->getEmailFormComponent(),
+                TextInput::make('nip')
+                    ->label('NIP / Nomor Pegawai'),
+                TextInput::make('unit_kerja')
+                    ->label('Unit Kerja'),
+                TextInput::make('alamat')
+                    ->label('Alamat Kantor'),
                 $this->getPasswordFormComponent(),
                 $this->getPasswordConfirmationFormComponent(),
             ]);
+    }
+
+    public function render(): \Illuminate\Contracts\View\View
+    {
+        return view(static::$view, $this->getViewData())
+            ->layout('filament-panels::components.layout.base');
     }
 }
