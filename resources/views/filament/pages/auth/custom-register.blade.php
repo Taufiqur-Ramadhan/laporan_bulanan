@@ -173,7 +173,7 @@
                 <div class="flex items-start gap-3 pt-2 text-left">
                     <input class="mt-1 size-4 rounded border-gray-300 dark:border-gray-700 text-primary focus:ring-primary bg-gray-50 dark:bg-gray-800" id="terms" type="checkbox" required/>
                     <label class="text-sm text-gray-600 dark:text-gray-400 leading-tight" for="terms">
-                        Saya setuju dengan <a class="text-primary hover:underline" href="#">Syarat dan Ketentuan</a> serta <a class="text-primary hover:underline" href="#">Kebijakan Privasi</a>.
+                        Saya setuju dengan <a class="text-primary hover:underline" href="{{ route('terms') }}" target="_blank">Syarat dan Ketentuan</a> serta <a class="text-primary hover:underline" href="{{ route('privacy') }}" target="_blank">Kebijakan Privasi</a>.
                     </label>
                 </div>
 
