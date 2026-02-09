@@ -51,13 +51,13 @@
         }
     </style>
 
-    <header class="w-full bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 px-4 md:px-10 py-3">
-        <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+    <header class="w-full bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 px-6 md:px-10 py-3">
+        <div class="flex items-center">
             <div class="flex items-center gap-3 text-primary">
-                <div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
-                    <span class="material-symbols-outlined text-primary">account_balance</span>
+                <div class="size-8 flex items-center justify-center bg-transparent rounded-lg overflow-hidden">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.nlDBMwT5zvAB9btG3QMmVQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-full h-full object-contain" />
                 </div>
-                <h2 class="text-[#100d1b] dark:text-white text-lg font-bold leading-tight tracking-tight">SIGAT</h2>
+                <h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase">SIGAT</h2>
             </div>
             <div class="flex items-center gap-6">
                 <div class="size-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border border-gray-100 dark:border-gray-800">
@@ -71,11 +71,11 @@
         <div class="w-full max-w-[480px] bg-white dark:bg-[#1c192e] rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden relative">
             <div class="p-8 pb-0 flex flex-col items-center text-center opacity-30 grayscale pointer-events-none select-none">
                 <div class="flex items-center gap-3 mb-4 text-left">
-                    <div class="w-12 h-12 flex items-center justify-center bg-primary rounded-xl text-white">
-                        <span class="material-symbols-outlined text-3xl">verified_user</span>
+                    <div class="w-12 h-12 flex items-center justify-center bg-transparent rounded-xl overflow-hidden">
+                        <img src="https://tse4.mm.bing.net/th/id/OIP.nlDBMwT5zvAB9btG3QMmVQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-full h-full object-contain" />
                     </div>
                     <div>
-                        <h1 class="text-[#100d1b] dark:text-white text-2xl font-bold leading-tight uppercase">SIGAT</h1>
+                        <h1 class="text-gray-900 dark:text-white text-2xl font-bold leading-tight uppercase">SIGAT</h1>
                         <p class="text-gray-500 dark:text-gray-400 text-[10px] font-medium uppercase tracking-wider">Sistem Input Kegiatan</p>
                     </div>
                 </div>
