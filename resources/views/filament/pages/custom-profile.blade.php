@@ -63,22 +63,47 @@
                 </div>
             </div>
             <nav class="flex flex-col gap-1">
+                <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a199c9] uppercase tracking-wider px-3 mb-2">Menu Utama</p>
                 <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a199c9] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards">
                     <span class="material-symbols-outlined text-[24px]">dashboard</span>
                     <p class="text-sm font-medium leading-normal">Dashboard</p>
                 </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a199c9] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/kegiatans">
-                    <span class="material-symbols-outlined text-[24px]">assignment</span>
-                    <p class="text-sm font-medium leading-normal">Kegiatan</p>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a199c9] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/activity-logs">
-                    <span class="material-symbols-outlined text-[24px]">description</span>
-                    <p class="text-sm font-medium leading-normal">Laporan</p>
-                </a>
-                <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-white" href="/dashboards/profile">
-                    <span class="material-symbols-outlined text-[24px]">person</span>
-                    <p class="text-sm font-medium leading-normal">Profil</p>
-                </a>
+                
+                <div class="pt-6">
+                    <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a199c9] uppercase tracking-wider px-3 mb-2">Manajemen</p>
+                    <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a397e0] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/kegiatans">
+                        <span class="material-symbols-outlined text-[24px]">assignment</span>
+                        <p class="text-sm font-medium leading-normal">Kegiatan</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a397e0] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/budgets">
+                        <span class="material-symbols-outlined text-[24px]">payments</span>
+                        <p class="text-sm font-medium leading-normal">Pengaturan Anggaran</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a199c9] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/activity-logs">
+                        <span class="material-symbols-outlined text-[24px]">receipt_long</span>
+                        <p class="text-sm font-medium leading-normal">Log Aktivitas</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a199c9] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/users">
+                        <span class="material-symbols-outlined text-[24px]">group</span>
+                        <p class="text-sm font-medium leading-normal">Manajemen User</p>
+                    </a>
+                </div>
+
+                <div class="pt-6">
+                    <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider px-3 mb-2">Pelaporan</p>
+                    <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a199c9] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/reports">
+                        <span class="material-symbols-outlined text-[24px]">description</span>
+                        <p class="text-sm font-medium leading-normal">Export</p>
+                    </a>
+                </div>
+
+                <div class="pt-6">
+                    <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider px-3 mb-2">System</p>
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-white" href="/dashboards/profile">
+                        <span class="material-symbols-outlined text-[24px]">person</span>
+                        <p class="text-sm font-medium leading-normal">Profil Pengguna</p>
+                    </a>
+                </div>
             </nav>
         </div>
         <div>
