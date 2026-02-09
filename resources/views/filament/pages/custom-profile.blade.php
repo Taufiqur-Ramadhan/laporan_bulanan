@@ -55,7 +55,7 @@
         <div class="flex flex-col gap-8">
             <div class="flex gap-3 items-center">
                 <div class="size-8 flex items-center justify-center bg-transparent rounded-lg overflow-hidden">
-                    <img src="https://tse4.mm.bing.net/th/id/OIP.nlDBMwT5zvAB9btG3QMmVQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-full h-full object-contain" />
+                    <img src="/images/logo.png" alt="Logo" class="w-full h-full object-contain" />
                 </div>
                 <div class="flex flex-col">
                     <h1 class="text-[#100d1b] dark:text-white text-lg font-bold leading-none uppercase">SIGAT</h1>

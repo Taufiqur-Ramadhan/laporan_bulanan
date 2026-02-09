@@ -55,7 +55,7 @@
         <div class="flex items-center">
             <div class="flex items-center gap-3 text-primary">
                 <div class="size-8 flex items-center justify-center bg-transparent rounded-lg overflow-hidden">
-                    <img src="https://tse4.mm.bing.net/th/id/OIP.nlDBMwT5zvAB9btG3QMmVQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-full h-full object-contain" />
+                    <img src="/images/logo.png" alt="Logo" class="w-full h-full object-contain" />
                 </div>
                 <h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase">SIGAT</h2>
             </div>
