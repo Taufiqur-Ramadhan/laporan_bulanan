@@ -279,6 +279,40 @@
                     </div>
                 </div>
 
+                <!-- Monthly Activity Trend -->
+                <div class="bg-white dark:bg-[#1a1630] rounded-xl border border-[#e9e7f3] dark:border-[#2d284d] p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="text-left">
+                            <h4 class="font-bold text-lg uppercase">Tren Aktivitas Bulanan ({{ now()->year }})</h4>
+                            <p class="text-xs text-[#594c9a]">Statistik frekuensi input kegiatan sepanjang tahun ini</p>
+                        </div>
+                    </div>
+                    <div class="h-48 flex items-end justify-between gap-2 px-2">
+                        @php
+                            $monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+                            $maxMonthly = max($monthlyActivityStats ?: [0]) ?: 1;
+                        @endphp
+                        @foreach($monthNames as $index => $name)
+                            @php 
+                                $monthNum = $index + 1;
+                                $count = $monthlyActivityStats[$monthNum] ?? 0;
+                                $height = ($count / $maxMonthly) * 100;
+                            @endphp
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-indigo-100 dark:bg-indigo-900/20 rounded-t-lg relative group" style="height: {{ max($height, 5) }}px">
+                                    <div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-lg transition-all group-hover:bg-indigo-600 h-full"></div>
+                                    @if($count > 0)
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                        {{ $count }}
+                                    </div>
+                                    @endif
+                                </div>
+                                <span class="text-[10px] {{ $monthNum == now()->month ? 'text-primary font-bold' : 'text-[#594c9a]' }} uppercase">{{ $name }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
                 <!-- Recent Activities Table -->
                 <div class="bg-white dark:bg-[#1a1630] rounded-xl border border-[#e9e7f3] dark:border-[#2d284d] overflow-hidden shadow-sm">
                     <div class="p-6 border-b border-[#e9e7f3] dark:border-[#2d284d] flex items-center justify-between">

@@ -23,6 +23,16 @@ class Dashboard extends BaseDashboard
                 ->select('users.unit_kerja', DB::raw('count(*) as total'))
                 ->groupBy('users.unit_kerja')
                 ->get(),
+            'monthlyActivityStats' => Kegiatan::select(
+                    DB::raw('MONTH(created_at) as month'),
+                    DB::raw('count(*) as total')
+                )
+                ->whereYear('created_at', now()->year)
+                ->groupBy('month')
+                ->orderBy('month')
+                ->get()
+                ->pluck('total', 'month')
+                ->toArray(),
             'inputHariIni' => Kegiatan::whereDate('created_at', now())->count(),
             'userName' => auth()->user()->name,
             'userRole' => auth()->user()->role,
