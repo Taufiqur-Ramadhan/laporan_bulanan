@@ -29,9 +29,9 @@ class Dashboard extends BaseDashboard
                 )
                 ->whereYear('created_at', now()->year)
                 ->groupBy('month')
-                ->orderBy('month')
                 ->get()
                 ->pluck('total', 'month')
+                ->mapWithKeys(fn ($item, $key) => [(int)$key => $item])
                 ->toArray(),
             'inputHariIni' => Kegiatan::whereDate('created_at', now())->count(),
             'userName' => auth()->user()->name,

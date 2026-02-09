@@ -209,29 +209,34 @@
                     <div class="lg:col-span-2 bg-white dark:bg-[#1a1630] rounded-xl border border-[#e9e7f3] dark:border-[#2d284d] p-6 shadow-sm">
                         <div class="flex items-center justify-between mb-6">
                             <div class="text-left">
-                                <h4 class="font-bold text-lg uppercase">Statistik Aktivitas Global</h4>
-                                <p class="text-xs text-[#594c9a]">Akumulasi input kegiatan dari seluruh unit kerja</p>
+                                <h4 class="font-bold text-lg uppercase">Statistik Aktivitas Global ({{ now()->year }})</h4>
+                                <p class="text-xs text-[#594c9a]">Tren frekuensi input kegiatan per bulan di seluruh unit kerja</p>
                             </div>
                         </div>
                         <div class="h-64 flex items-end justify-between gap-4 px-2">
-                            @php 
-                                $maxTotal = $globalActivityStats->max('total') ?: 1; 
+                            @php
+                                $monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+                                $maxMonthly = max($monthlyActivityStats ?: [0]) ?: 1;
                             @endphp
-                            @forelse($globalActivityStats as $stats)
-                            <div class="flex-1 flex flex-col items-center gap-2">
-                                <div class="w-full bg-admin-accent/20 rounded-t-lg relative group" style="height: {{ ($stats->total / $maxTotal) * 200 }}px">
-                                    <div class="absolute inset-x-0 bottom-0 bg-admin-accent rounded-t-lg transition-all group-hover:bg-primary h-full"></div>
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-admin-accent text-white text-[10px] font-bold px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                                        {{ $stats->total }}
+                            @foreach($monthNames as $index => $name)
+                                @php 
+                                    $monthNum = $index + 1;
+                                    $count = $monthlyActivityStats[$monthNum] ?? 0;
+                                    // Calculate height proportionally to 200px (standard height for the flex container)
+                                    $height = ($count / $maxMonthly) * 200;
+                                @endphp
+                                <div class="flex-1 flex flex-col items-center gap-2">
+                                    <div class="w-full bg-admin-accent/10 dark:bg-admin-accent/20 rounded-t-lg relative group" style="height: {{ max($height, 8) }}px">
+                                        <div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-lg transition-all group-hover:bg-admin-accent h-full"></div>
+                                        @if($count > 0)
+                                        <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-white text-[11px] font-black px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                                            {{ $count }}
+                                        </div>
+                                        @endif
                                     </div>
+                                    <span class="text-[10px] {{ $monthNum == now()->month ? 'text-primary font-black scale-110' : 'text-[#594c9a] font-bold' }} uppercase transition-all">{{ $name }}</span>
                                 </div>
-                                <span class="text-[10px] text-[#594c9a] font-bold uppercase truncate w-full text-center" title="{{ $stats->unit_kerja }}">{{ $stats->unit_kerja ?? 'Lainnya' }}</span>
-                            </div>
-                            @empty
-                            <div class="w-full h-full flex items-center justify-center text-gray-400 text-sm italic">
-                                Belum ada data statistik kegiatan.
-                            </div>
-                            @endforelse
+                            @endforeach
                         </div>
                     </div>
                     
@@ -242,28 +247,28 @@
                                 <div class="flex justify-between items-center mb-3">
                                     <span class="text-xs font-bold uppercase tracking-wider text-[#594c9a]">Server Status</span>
                                     <span class="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600">
-                                        <span class="size-2 bg-emerald-500 rounded-full animate-pulse"></span> OPERATIONAL
+                                        <span class="size-2 bg-emerald-500 rounded-full animate-pulse"></span> ONLINE
                                     </span>
                                 </div>
                                 <div class="space-y-2">
                                     <div class="flex justify-between text-[10px]">
                                         <span class="text-[#594c9a] font-bold uppercase">Memory Usage</span>
-                                        <span class="font-bold">32%</span>
+                                        <span class="font-bold">28%</span>
                                     </div>
                                     <div class="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                                        <div class="bg-admin-accent h-full w-[32%]"></div>
+                                        <div class="bg-admin-accent h-full w-[28%]"></div>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="space-y-3">
-                                <p class="text-[10px] font-bold text-[#594c9a] uppercase text-left">Ringkasan Cepat</p>
+                                <p class="text-[10px] font-bold text-[#594c9a] uppercase text-left border-b border-[#f0eff8] pb-1">Ringkasan Hari Ini</p>
                                 <div class="flex items-center justify-between p-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900/20 text-left">
                                     <div>
-                                        <p class="text-[10px] font-bold text-indigo-600 uppercase">Input Hari Ini</p>
+                                        <p class="text-[10px] font-bold text-indigo-600 uppercase">Input Baru</p>
                                         <p class="text-lg font-black text-indigo-900 dark:text-indigo-200">{{ $inputHariIni }}</p>
                                     </div>
-                                    <span class="material-symbols-outlined text-indigo-400">event_note</span>
+                                    <span class="material-symbols-outlined text-indigo-400">event_available</span>
                                 </div>
                                 <div class="flex items-center justify-between p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-900/20 text-left">
                                     <div>
@@ -272,44 +277,10 @@
                                             {{ $globalActivityStats->sortByDesc('total')->first()?->unit_kerja ?? '-' }}
                                         </p>
                                     </div>
-                                    <span class="material-symbols-outlined text-emerald-400">trending_up</span>
+                                    <span class="material-symbols-outlined text-emerald-400">workspace_premium</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Monthly Activity Trend -->
-                <div class="bg-white dark:bg-[#1a1630] rounded-xl border border-[#e9e7f3] dark:border-[#2d284d] p-6 shadow-sm">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="text-left">
-                            <h4 class="font-bold text-lg uppercase">Tren Aktivitas Bulanan ({{ now()->year }})</h4>
-                            <p class="text-xs text-[#594c9a]">Statistik frekuensi input kegiatan sepanjang tahun ini</p>
-                        </div>
-                    </div>
-                    <div class="h-48 flex items-end justify-between gap-2 px-2">
-                        @php
-                            $monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-                            $maxMonthly = max($monthlyActivityStats ?: [0]) ?: 1;
-                        @endphp
-                        @foreach($monthNames as $index => $name)
-                            @php 
-                                $monthNum = $index + 1;
-                                $count = $monthlyActivityStats[$monthNum] ?? 0;
-                                $height = ($count / $maxMonthly) * 100;
-                            @endphp
-                            <div class="flex-1 flex flex-col items-center gap-2">
-                                <div class="w-full bg-indigo-100 dark:bg-indigo-900/20 rounded-t-lg relative group" style="height: {{ max($height, 5) }}px">
-                                    <div class="absolute inset-x-0 bottom-0 bg-primary rounded-t-lg transition-all group-hover:bg-indigo-600 h-full"></div>
-                                    @if($count > 0)
-                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                                        {{ $count }}
-                                    </div>
-                                    @endif
-                                </div>
-                                <span class="text-[10px] {{ $monthNum == now()->month ? 'text-primary font-bold' : 'text-[#594c9a]' }} uppercase">{{ $name }}</span>
-                            </div>
-                        @endforeach
                     </div>
                 </div>
 
