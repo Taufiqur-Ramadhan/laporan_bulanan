@@ -70,7 +70,7 @@
             <!-- Header Section -->
             <div class="pt-8 px-8 flex flex-col items-center text-center">
                 <div class="mb-4">
-                    <span class="material-symbols-outlined text-primary text-5xl">shield_person</span>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/National_emblem_of_Indonesia_Garuda_Pancasila.svg" alt="Logo Garuda" class="w-16 h-16 object-contain" />
                 </div>
                 <h1 class="text-gray-900 dark:text-white text-2xl font-bold">SIGAT</h1>
                 <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Sistem Input Kegiatan</p>
@@ -99,7 +99,7 @@
                 <div class="text-left">
                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Nama Lengkap*</label>
                     <div class="relative">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">person</span>
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></span>
                         <input wire:model="data.name" class="w-full pl-10 pr-4 h-11 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 rounded-lg focus:ring-primary focus:border-primary dark:text-white placeholder-gray-400" placeholder="Masukkan nama lengkap Anda" type="text" required/>
                     </div>
                 </div>
