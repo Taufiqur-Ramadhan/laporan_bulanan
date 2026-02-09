@@ -14,11 +14,38 @@ class CustomRegister extends Register
             ->layout('filament-panels::components.layout.base');
     }
 
-    public function register(): ?\Filament\Http\Responses\Auth\Contracts\RegistrationResponse
+    public function register(): ?\App\Http\Responses\Auth\CustomRegistrationResponse
     {
-        session()->forget('url.intended');
+        try {
+            $this->rateLimit(2);
+        } catch (\Illuminate\Cache\RateLimiter $exception) {
+            throw \Illuminate\Validation\ValidationException::withMessages([
+                'data.email' => __('filament-panels::pages/auth/register.notifications.throttled.title', [
+                    'seconds' => $exception->secondsUntilAvailable,
+                    'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                ]),
+            ]);
+        }
 
-        return parent::register();
+        $user = $this->wrapInDatabaseTransaction(function () {
+            $this->callHook('beforeRegister');
+
+            $data = $this->form->getState();
+
+            $user = $this->getUserModel()::create($data);
+
+            $this->sendEmailVerificationNotification($user);
+
+            \Illuminate\Support\Facades\Auth::login($user);
+
+            $this->callHook('afterRegister');
+
+            return $user;
+        });
+
+        session()->regenerate();
+
+        return new \App\Http\Responses\Auth\CustomRegistrationResponse();
     }
 
     protected function getRedirectUrl(): string

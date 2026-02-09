@@ -14,11 +14,39 @@ class CustomLogin extends Login
             ->layout('filament-panels::components.layout.base');
     }
 
-    public function authenticate(): ?\Filament\Http\Responses\Auth\Contracts\LoginResponse
+    public function authenticate(): ?\App\Http\Responses\Auth\CustomLoginResponse
     {
-        session()->forget('url.intended');
+        try {
+            $this->rateLimit(5);
+        } catch (\Illuminate\Cache\RateLimiter $exception) {
+            throw \Illuminate\Validation\ValidationException::withMessages([
+                'data.email' => __('filament-panels::pages/auth/login.notifications.throttled.title', [
+                    'seconds' => $exception->secondsUntilAvailable,
+                    'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                ]),
+            ]);
+        }
 
-        return parent::authenticate();
+        $data = $this->form->getState();
+
+        if (! \Illuminate\Support\Facades\Auth::attempt($this->getCredentialsFromFormData($data), $data['remember'] ?? false)) {
+            $this->throwFailureValidationException();
+        }
+
+        $user = \Illuminate\Support\Facades\Auth::user();
+
+        if (
+            ($user instanceof \Filament\Models\Contracts\FilamentUser) &&
+            (! $user->canAccessPanel(filament()->getCurrentPanel()))
+        ) {
+            \Illuminate\Support\Facades\Auth::logout();
+
+            $this->throwFailureValidationException();
+        }
+
+        session()->regenerate();
+
+        return new \App\Http\Responses\Auth\CustomLoginResponse();
     }
 
     protected function getRedirectUrl(): string

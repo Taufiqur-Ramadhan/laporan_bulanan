@@ -69,7 +69,7 @@ class VerifyOtp extends Page
             ->statePath('data');
     }
 
-    public function verify(): void
+    public function verify(): mixed
     {
         $data = $this->form->getState();
         $user = Auth::user();
@@ -86,7 +86,7 @@ class VerifyOtp extends Page
                 ->success()
                 ->send();
 
-            redirect()->to('/dashboards/auth/login-success');
+            return redirect()->to('/dashboards/auth/login-success');
         } else {
             Notification::make()
                 ->title('Kode OTP salah atau sudah kedaluwarsa.')
