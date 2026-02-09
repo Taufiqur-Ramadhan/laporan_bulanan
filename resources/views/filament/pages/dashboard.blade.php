@@ -81,6 +81,7 @@
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">assignment</span>
                         <span class="text-sm font-medium">Kegiatan</span>
                     </a>
+                    @if($userRole === 'admin')
                     <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/budgets">
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">payments</span>
                         <span class="text-sm font-medium">Pengaturan Anggaran</span>
@@ -93,6 +94,7 @@
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">group</span>
                         <span class="text-sm font-medium">Manajemen User</span>
                     </a>
+                    @endif
                 </div>
 
                 <div class="pt-6">
