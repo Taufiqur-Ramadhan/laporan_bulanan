@@ -23,6 +23,7 @@ class Dashboard extends BaseDashboard
                 ->select('users.unit_kerja', DB::raw('count(*) as total'))
                 ->groupBy('users.unit_kerja')
                 ->get(),
+            'inputHariIni' => Kegiatan::whereDate('created_at', now())->count(),
             'userName' => auth()->user()->name,
             'userRole' => auth()->user()->role,
             'userAvatar' => auth()->user()->getFilamentAvatarUrl() ?? "https://ui-avatars.com/api/?name=".urlencode(auth()->user()->name)."&color=7c3aed&background=f0f0f5",

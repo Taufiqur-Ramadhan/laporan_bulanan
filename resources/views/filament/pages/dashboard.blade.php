@@ -261,7 +261,7 @@
                                 <div class="flex items-center justify-between p-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900/20 text-left">
                                     <div>
                                         <p class="text-[10px] font-bold text-indigo-600 uppercase">Input Hari Ini</p>
-                                        <p class="text-lg font-black text-indigo-900 dark:text-indigo-200">{{ Kegiatan::whereDate('created_at', today())->count() }}</p>
+                                        <p class="text-lg font-black text-indigo-900 dark:text-indigo-200">{{ $inputHariIni }}</p>
                                     </div>
                                     <span class="material-symbols-outlined text-indigo-400">event_note</span>
                                 </div>
