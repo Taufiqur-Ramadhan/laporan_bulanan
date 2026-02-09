@@ -19,6 +19,10 @@ class Dashboard extends BaseDashboard
             'totalAnggaran' => Kegiatan::sum('anggaran'),
             'totalUser' => User::count(),
             'recentKegiatans' => Kegiatan::with('user')->latest()->take(5)->get(),
+            'globalActivityStats' => Kegiatan::join('users', 'kegiatans.user_id', '=', 'users.id')
+                ->select('users.unit_kerja', DB::raw('count(*) as total'))
+                ->groupBy('users.unit_kerja')
+                ->get(),
             'userName' => auth()->user()->name,
             'userRole' => auth()->user()->role,
             'userAvatar' => auth()->user()->getFilamentAvatarUrl() ?? "https://ui-avatars.com/api/?name=".urlencode(auth()->user()->name)."&color=7c3aed&background=f0f0f5",
