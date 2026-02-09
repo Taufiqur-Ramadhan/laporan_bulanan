@@ -140,14 +140,20 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-6">
-                    <div class="flex items-center gap-4 border-l border-[#e9e7f3] dark:border-[#2d284d] pl-6">
-                        <button class="relative p-1 text-[#594c9a] dark:text-[#a397e0]">
-                            <span class="material-symbols-outlined">notifications</span>
-                            <span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1630]"></span>
+                    <div class="flex items-center gap-6 border-l border-[#e9e7f3] dark:border-[#2d284d] pl-6">
+                        <button class="relative p-1 text-[#594c9a] dark:text-[#a397e0] hover:bg-gray-50 dark:hover:bg-[#2d284d] rounded-full transition-colors">
+                            <span class="material-symbols-outlined text-2xl">notifications</span>
+                            <span class="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1630]"></span>
                         </button>
-                        <div class="flex items-center gap-2 bg-admin-accent/10 px-3 py-1 rounded-full">
-                            <span class="size-2 bg-admin-accent rounded-full animate-pulse"></span>
-                            <span class="text-[11px] font-bold text-admin-accent uppercase tracking-wide">{{ $userRole }}</span>
+                        
+                        <div class="flex items-center gap-3 pl-2 group cursor-pointer">
+                            <div class="flex flex-col items-end hidden sm:flex text-right">
+                                <span class="text-xs font-bold text-[#100d1b] dark:text-white leading-none capitalize">{{ $userName }}</span>
+                                <span class="text-[10px] font-bold text-primary uppercase tracking-tighter mt-1">{{ $userRole }}</span>
+                            </div>
+                            <div class="size-10 rounded-xl overflow-hidden border-2 border-primary/10 group-hover:border-primary transition-all shadow-sm">
+                                <img src="{{ $userAvatar }}" alt="Profile" class="w-full h-full object-cover" />
+                            </div>
                         </div>
                     </div>
                 </div>

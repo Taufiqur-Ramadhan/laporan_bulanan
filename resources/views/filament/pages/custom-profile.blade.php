@@ -129,22 +129,22 @@
                 <span class="text-[#594c9a] dark:text-[#a199c9] text-sm">/</span>
                 <span class="text-[#100d1b] dark:text-white text-sm font-bold">Profil Pengguna</span>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="flex gap-2">
-                    <button class="flex size-10 items-center justify-center rounded-lg bg-[#f0f0f5] dark:bg-[#2d2a3d] text-[#100d1b] dark:text-white hover:bg-[#e2e2ec] transition-colors">
-                        <span class="material-symbols-outlined text-[20px]">notifications</span>
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-6 border-l border-[#e9e7f3] dark:border-[#2d284d] pl-6">
+                    <button class="relative p-1 text-[#594c9a] dark:text-[#a199c9] hover:bg-gray-50 dark:hover:bg-[#2d284d] rounded-full transition-colors">
+                        <span class="material-symbols-outlined text-2xl">notifications</span>
+                        <span class="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1630]"></span>
                     </button>
-                    <button class="flex size-10 items-center justify-center rounded-lg bg-[#f0f0f5] dark:bg-[#2d2a3d] text-[#100d1b] dark:text-white hover:bg-[#e2e2ec] transition-colors">
-                        <span class="material-symbols-outlined text-[20px]">settings</span>
-                    </button>
-                </div>
-                <div class="h-8 w-[1px] bg-[#e9e7f3] dark:bg-[#2d2a3d]"></div>
-                <div class="flex items-center gap-3">
-                    <div class="text-right hidden sm:block">
-                        <p class="text-[#100d1b] dark:text-white text-xs font-bold leading-none">{{ auth()->user()->name }}</p>
-                        <p class="text-[#594c9a] dark:text-[#a199c9] text-[10px] uppercase font-bold tracking-tight">{{ auth()->user()->role }}</p>
-                    </div>
-                    <div class="size-10 rounded-full bg-cover bg-center border-2 border-primary/20" style='background-image: url("{{ auth()->user()->getFilamentAvatarUrl() ?? "https://ui-avatars.com/api/?name=".urlencode(auth()->user()->name)."&color=3211d4&background=e9e7f3" }}");'></div>
+                    
+                    <a href="/dashboards/profile" class="flex items-center gap-3 pl-2 group cursor-pointer">
+                        <div class="flex flex-col items-end hidden sm:flex text-right">
+                            <span class="text-xs font-bold text-[#100d1b] dark:text-white leading-none capitalize">{{ $userName }}</span>
+                            <span class="text-[10px] font-bold text-primary uppercase tracking-tighter mt-1">{{ $userRole }}</span>
+                        </div>
+                        <div class="size-10 rounded-xl overflow-hidden border-2 border-primary/10 group-hover:border-primary transition-all shadow-sm">
+                            <img src="{{ $userAvatar }}" alt="Profile" class="w-full h-full object-cover" />
+                        </div>
+                    </a>
                 </div>
             </div>
         </header>

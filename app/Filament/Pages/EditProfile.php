@@ -33,6 +33,15 @@ class EditProfile extends BaseEditProfile
             ]);
     }
 
+    public function getViewData(): array
+    {
+        return [
+            'userName' => auth()->user()->name,
+            'userRole' => auth()->user()->role ?? 'Admin',
+            'userAvatar' => auth()->user()->getFilamentAvatarUrl() ?? "https://ui-avatars.com/api/?name=".urlencode(auth()->user()->name)."&color=7c3aed&background=f0f0f5",
+        ];
+    }
+
     public function render(): \Illuminate\Contracts\View\View
     {
         return view(static::$view, $this->getViewData())
