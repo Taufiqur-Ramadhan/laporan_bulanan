@@ -70,7 +70,7 @@
             <!-- Header Section -->
             <div class="pt-8 px-8 flex flex-col items-center text-center">
                 <div class="mb-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/National_emblem_of_Indonesia_Garuda_Pancasila.svg" alt="Logo Garuda" class="w-16 h-16 object-contain" />
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.nlDBMwT5zvAB9btG3QMmVQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-16 h-16 object-contain" />
                 </div>
                 <h1 class="text-gray-900 dark:text-white text-2xl font-bold">SIGAT</h1>
                 <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Sistem Input Kegiatan</p>
