@@ -34,6 +34,15 @@
             margin: 0 !important;
             padding: 0 !important;
         }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
     </style>
 
     <!-- Top Navigation Bar -->
@@ -44,6 +53,12 @@
                     <img src="https://tse4.mm.bing.net/th/id/OIP.nlDBMwT5zvAB9btG3QMmVQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-full h-full object-contain" />
                 </div>
                 <h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase">SIGAT</h2>
+            </div>
+            <!-- Running Text -->
+            <div class="flex-grow overflow-hidden ml-6 hidden sm:block">
+                <div class="animate-marquee whitespace-nowrap text-xs font-medium text-primary uppercase tracking-widest opacity-80 italic">
+                    Selamat Datang di SIGAT (Sistem Input Kegiatan) - Pantau dan Input Laporan Kegiatan Anda dengan Mudah dan Cepat - Pastikan Data yang Anda Masukkan Akurat dan Terverifikasi oleh Atasan.
+                </div>
             </div>
         </div>
     </header>

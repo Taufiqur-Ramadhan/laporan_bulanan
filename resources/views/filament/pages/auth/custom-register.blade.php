@@ -35,6 +35,15 @@
             margin: 0 !important;
             padding: 0 !important;
         }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
         .material-symbols-outlined {
             font-family: 'Material Symbols Outlined';
             font-weight: normal;
