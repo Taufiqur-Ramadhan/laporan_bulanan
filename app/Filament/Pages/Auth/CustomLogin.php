@@ -14,6 +14,13 @@ class CustomLogin extends Login
             ->layout('filament-panels::components.layout.base');
     }
 
+    public function authenticate(): ?\Filament\Http\Responses\Auth\Contracts\LoginResponse
+    {
+        session()->forget('url.intended');
+
+        return parent::authenticate();
+    }
+
     protected function getRedirectUrl(): string
     {
         return '/dashboards/auth/login-success';

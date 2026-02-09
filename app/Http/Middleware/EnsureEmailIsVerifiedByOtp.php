@@ -19,8 +19,9 @@ class EnsureEmailIsVerifiedByOtp
 
         if ($user && ! $user->email_verified_at) {
             $otpRouteName = 'filament.admin.pages.auth.verify-otp';
+            $successRouteName = 'filament.admin.pages.auth.login-success';
 
-            if ($request->routeIs($otpRouteName) || $request->routeIs('filament.admin.auth.logout')) {
+            if ($request->routeIs($otpRouteName) || $request->routeIs($successRouteName) || $request->routeIs('filament.admin.auth.logout')) {
                 return $next($request);
             }
 

@@ -14,6 +14,13 @@ class CustomRegister extends Register
             ->layout('filament-panels::components.layout.base');
     }
 
+    public function register(): ?\Filament\Http\Responses\Auth\Contracts\RegistrationResponse
+    {
+        session()->forget('url.intended');
+
+        return parent::register();
+    }
+
     protected function getRedirectUrl(): string
     {
         return '/dashboards/auth/login-success';
