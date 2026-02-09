@@ -56,11 +56,14 @@
         <aside class="w-72 bg-white dark:bg-[#1a1630] border-r border-[#e9e7f3] dark:border-[#2d284d] flex flex-col shrink-0">
             <div class="p-6">
                 <div class="flex items-center gap-3">
-                    <div class="size-10 bg-admin-accent rounded-xl flex items-center justify-center text-white shrink-0">
-                        <span class="material-symbols-outlined text-2xl">verified_user</span>
+                    <div class="size-10 flex items-center justify-center bg-transparent rounded-lg overflow-hidden shrink-0">
+                        <img src="/images/logo.png" alt="Logo" class="w-full h-full object-contain" />
                     </div>
                     <div class="flex flex-col">
-                        <h1 class="text-xl font-bold leading-none uppercase">SIGAT</h1>
+                        <div class="flex items-center gap-1.5">
+                            <h1 class="text-xl font-bold leading-none uppercase">SIGAT</h1>
+                            <span class="material-symbols-outlined text-primary text-base">verified_user</span>
+                        </div>
                         <p class="text-[#594c9a] dark:text-[#a397e0] text-xs font-medium uppercase tracking-tighter">Admin Control Center</p>
                     </div>
                 </div>
