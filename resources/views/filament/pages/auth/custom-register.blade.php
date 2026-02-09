@@ -53,7 +53,7 @@
     </style>
 
     <!-- Top Navigation -->
-    <header class="w-full flex items-center justify-between border-b border-solid border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark px-6 md:px-10 py-3">
+    <header class="w-full flex items-center border-b border-solid border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark px-6 md:px-10 py-3">
         <div class="flex items-center gap-3 text-primary">
             <div class="size-8 flex items-center justify-center bg-transparent rounded-lg overflow-hidden">
                 <img src="https://tse4.mm.bing.net/th/id/OIP.nlDBMwT5zvAB9btG3QMmVQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-full h-full object-contain" />

@@ -37,23 +37,13 @@
     </style>
 
     <!-- Top Navigation Bar -->
-    <header class="w-full bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 px-4 md:px-10 py-3">
-        <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+    <header class="w-full bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 px-6 md:px-10 py-3">
+        <div class="flex items-center">
             <div class="flex items-center gap-3 text-primary">
                 <div class="size-8 flex items-center justify-center bg-transparent rounded-lg overflow-hidden">
                     <img src="https://tse4.mm.bing.net/th/id/OIP.nlDBMwT5zvAB9btG3QMmVQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Logo" class="w-full h-full object-contain" />
                 </div>
                 <h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase">SIGAT</h2>
-            </div>
-            <div class="flex items-center gap-6">
-                <nav class="hidden md:flex items-center gap-8">
-                    <a class="text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="/">Home</a>
-                    <a class="text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="{{ route('terms') }}">About</a>
-                    <a class="text-gray-600 dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="{{ route('privacy') }}">Legal</a>
-                </nav>
-                <a href="{{ $registerUrl }}" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg text-sm font-bold transition-all shadow-sm">
-                    Daftar
-                </a>
             </div>
         </div>
     </header>
