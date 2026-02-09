@@ -54,8 +54,8 @@
     <aside class="w-64 flex-shrink-0 border-r border-[#e9e7f3] dark:border-[#2d2a3d] bg-white dark:bg-[#1a1630] flex flex-col justify-between p-4 hidden md:flex">
         <div class="flex flex-col gap-8">
             <div class="flex gap-3 items-center">
-                <div class="size-8 flex items-center justify-center bg-transparent rounded-lg overflow-hidden">
-                    <img src="/images/logo.png" alt="Logo" class="w-full h-full object-contain" />
+                <div class="size-8 bg-admin-accent rounded-lg flex items-center justify-center text-white shrink-0">
+                    <span class="material-symbols-outlined text-lg">verified_user</span>
                 </div>
                 <div class="flex flex-col">
                     <h1 class="text-[#100d1b] dark:text-white text-lg font-bold leading-none uppercase">SIGAT</h1>
