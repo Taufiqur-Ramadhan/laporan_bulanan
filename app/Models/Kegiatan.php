@@ -31,6 +31,7 @@ class Kegiatan extends Model
         'latitude',
         'longitude',
         'catatan_revisi',
+        'budget_id',
     ];
 
     protected $casts = [
@@ -50,5 +51,10 @@ class Kegiatan extends Model
     public function verifier()
     {
         return $this->belongsTo(User::class, 'verified_by');
+    }
+
+    public function budget()
+    {
+        return $this->belongsTo(Budget::class);
     }
 }

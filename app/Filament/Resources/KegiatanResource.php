@@ -47,8 +47,16 @@ class KegiatanResource extends Resource
                 ->required()
                 ->maxLength(255),
             
+            Forms\Components\Select::make('budget_id')
+                ->label('Alokasi Anggaran')
+                ->relationship('budget', 'nama_program')
+                ->getOptionLabelFromRecordUsing(fn ($record) => "[{$record->kode_rekening}] {$record->nama_program}")
+                ->searchable()
+                ->preload()
+                ->required(),
+
             Forms\Components\TextInput::make('anggaran')
-                ->label('Anggaran')
+                ->label('Anggaran Kegiatan')
                 ->required()
                 ->numeric()
                 ->prefix('Rp')
