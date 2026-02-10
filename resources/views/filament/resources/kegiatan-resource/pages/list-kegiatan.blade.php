@@ -139,7 +139,7 @@
                     <div class="flex items-center gap-2 text-sm text-[#594c9a] dark:text-[#a397e0]">
                         <span class="font-medium">Pages</span>
                         <span class="text-[#594c9a] dark:text-[#a199c9] text-xs">/</span>
-                        <span class="text-[#100d1b] dark:text-white font-bold uppercase tracking-tight">Riwayat Kegiatan</span>
+                        <span class="text-[#100d1b] dark:text-white font-bold tracking-tight">Daftar Kegiatan</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-6">
@@ -167,7 +167,7 @@
                 <div class="max-w-[1400px] mx-auto">
                     <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
-                            <h1 class="text-3xl font-bold tracking-tight text-[#100d1b] dark:text-white uppercase transition-colors">Riwayat Kegiatan</h1>
+                            <h1 class="text-3xl font-bold tracking-tight text-[#100d1b] dark:text-white transition-colors">Daftar Kegiatan</h1>
                             <p class="text-[#594c9a] dark:text-gray-400 mt-2 font-medium">Kelola dan pantau seluruh laporan kegiatan unit kerja.</p>
                         </div>
                         @if(count($this->getHeaderActions()))

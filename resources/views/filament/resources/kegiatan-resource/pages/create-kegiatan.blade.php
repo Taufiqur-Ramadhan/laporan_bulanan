@@ -138,7 +138,7 @@
                     <div class="flex items-center gap-2 text-sm text-[#594c9a] dark:text-[#a397e0]">
                         <span class="font-medium">Pages</span>
                         <span class="text-[#594c9a] dark:text-[#a199c9] text-xs">/</span>
-                        <span class="text-[#100d1b] dark:text-white font-bold uppercase tracking-tight">Input Kegiatan</span>
+                        <span class="text-[#100d1b] dark:text-white font-bold tracking-tight">Input Kegiatan</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-6">
@@ -165,7 +165,7 @@
             <div class="flex-1 overflow-y-auto p-8">
                 <div class="max-w-4xl mx-auto">
                     <div class="mb-8">
-                        <h1 class="text-3xl font-bold tracking-tight text-[#100d1b] dark:text-white uppercase transition-colors">Input Kegiatan Baru</h1>
+                        <h1 class="text-3xl font-bold tracking-tight text-[#100d1b] dark:text-white transition-colors">Input Kegiatan Baru</h1>
                         <p class="text-[#594c9a] dark:text-gray-400 mt-2 font-medium">Lengkapi formulir di bawah ini untuk melaporkan kegiatan yang telah dilaksanakan.</p>
                     </div>
 
