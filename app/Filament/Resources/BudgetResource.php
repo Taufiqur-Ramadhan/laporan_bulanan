@@ -80,13 +80,13 @@ class BudgetResource extends Resource
                     ->weight('bold'),
                 Tables\Columns\TextColumn::make('realisasi')
                     ->label('Realisasi')
-                    ->getStateUsing(fn (Budget $record) => $record->kegiatans()->sum('anggaran'))
+                    ->getStateUsing(fn (Budget $record) => $record->kegiatans()->where('status', 'approved')->sum('anggaran'))
                     ->money('IDR', locale: 'id_ID')
                     ->weight('medium'),
                 Tables\Columns\TextColumn::make('persentase')
                     ->label('Persentase (%)')
                     ->getStateUsing(function (Budget $record) {
-                        $realisasi = $record->kegiatans()->sum('anggaran');
+                        $realisasi = $record->kegiatans()->where('status', 'approved')->sum('anggaran');
                         return $record->amount > 0 ? ($realisasi / $record->amount) * 100 : 0;
                     })
                     ->formatStateUsing(fn ($state) => number_format($state, 1) . '%')
