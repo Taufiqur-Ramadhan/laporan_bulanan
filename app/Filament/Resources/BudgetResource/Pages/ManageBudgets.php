@@ -16,7 +16,8 @@ class ManageBudgets extends ManageRecords
     {
         return [
             Actions\CreateAction::make()
-                ->label('Tambah Alokasi'),
+                ->label('Tambah Alokasi')
+                ->after(fn () => $this->dispatch('show-success-animation', message: 'Anggaran Berhasil Ditambahkan!')),
         ];
     }
 

@@ -252,4 +252,7 @@
             </main>
         </div>
     </div>
+
+    <!-- Success Animation Overlay -->
+    @include('filament.resources.budget-resource.pages.success-overlay')
 </div>
