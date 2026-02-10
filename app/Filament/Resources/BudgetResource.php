@@ -106,7 +106,7 @@ class BudgetResource extends Resource
             ->filtersLayout(Tables\Enums\FiltersLayout::Dropdown)
             ->actions([
                 Tables\Actions\EditAction::make()
-                    ->after(fn () => $this->dispatch('show-success-animation', message: 'Perubahan Berhasil Disimpan!')),
+                    ->after(fn ($livewire) => $livewire->dispatch('show-success-animation', message: 'Perubahan Berhasil Disimpan!')),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
