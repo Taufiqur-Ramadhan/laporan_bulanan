@@ -62,7 +62,6 @@
                     <div class="flex flex-col">
                         <div class="flex items-center gap-1.5">
                             <h1 class="text-xl font-bold leading-none uppercase">SIGAT</h1>
-                            <span class="material-symbols-outlined text-primary text-base">verified_user</span>
                         </div>
                         <p class="text-[#594c9a] dark:text-[#a397e0] text-xs font-medium uppercase tracking-tighter">Admin Control Center</p>
                     </div>

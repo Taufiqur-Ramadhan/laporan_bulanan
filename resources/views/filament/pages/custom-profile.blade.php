@@ -60,7 +60,6 @@
                 <div class="flex flex-col">
                     <div class="flex items-center gap-1">
                         <h1 class="text-[#100d1b] dark:text-white text-lg font-bold leading-none uppercase">SIGAT</h1>
-                        <span class="material-symbols-outlined text-primary text-sm">verified_user</span>
                     </div>
                     <p class="text-[#594c9a] dark:text-[#a199c9] text-[10px] font-normal uppercase tracking-wider">Sistem Input Kegiatan</p>
                 </div>
