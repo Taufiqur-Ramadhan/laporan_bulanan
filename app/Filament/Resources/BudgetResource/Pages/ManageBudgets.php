@@ -24,7 +24,7 @@ class ManageBudgets extends ManageRecords
     protected function getViewData(): array
     {
         $totalBudget = \App\Models\Budget::sum('amount');
-        $usedBudget = \App\Models\Kegiatan::whereIn('status', ['approved', 'pending', 'revision'])->sum('anggaran');
+        $usedBudget = \App\Models\Kegiatan::sum('anggaran');
         $remainingBudget = $totalBudget - $usedBudget;
         $utilizationRate = $totalBudget > 0 ? ($usedBudget / $totalBudget) * 100 : 0;
 
