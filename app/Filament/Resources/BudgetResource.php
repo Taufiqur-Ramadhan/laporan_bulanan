@@ -94,7 +94,8 @@ class BudgetResource extends Resource
                     ->view('filament.resources.budget-resource.columns.progress-bar'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Terakhir Diubah')
-                    ->dateTime()
+                    ->dateTime('d M Y h:i A')
+                    ->timezone('Asia/Jakarta')
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
@@ -102,7 +103,7 @@ class BudgetResource extends Resource
                     ->label('Tahun')
                     ->options(fn () => \App\Models\Budget::distinct()->pluck('year', 'year')->toArray()),
             ])
-            ->filtersLayout(Tables\Enums\FiltersLayout::AboveContentCollapsible)
+            ->filtersLayout(Tables\Enums\FiltersLayout::Dropdown)
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

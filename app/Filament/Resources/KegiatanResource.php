@@ -211,9 +211,10 @@ class KegiatanResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('created_at')
-                ->label('Tanggal')
-                ->date('d/m/Y')
-                ->sortable(),
+                    ->label('Tanggal & Waktu')
+                    ->dateTime('d/m/Y h:i A')
+                    ->timezone('Asia/Jakarta')
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('Pelapor')
