@@ -24,9 +24,7 @@ class KegiatanResource extends Resource
     protected static ?string $model = Kegiatan::class;
     protected static ?string $pluralModelLabel = 'Kegiatan';
     protected static ?string $modelLabel = 'Kegiatan';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Manajemen';
-    protected static ?string $slug = 'kegiatan';
 
     public static function form(Form $form): Form
     {
@@ -350,7 +348,7 @@ class KegiatanResource extends Resource
     {
         return [
             'index' => Pages\ListKegiatan::route('/'),
-            'create' => Pages\CreateKegiatan::route('/lapor'),
+            'create' => Pages\CreateKegiatan::route('/create'),
             'edit' => Pages\EditKegiatan::route('/{record}/edit'),
         ];
     }

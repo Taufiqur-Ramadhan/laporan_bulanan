@@ -76,7 +76,7 @@
                 
                 <div class="pt-6">
                     <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider px-3 mb-2">Manajemen</p>
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/kegiatan">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/kegiatans">
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">assignment</span>
                         <span class="text-sm font-medium">Kegiatan</span>
                     </a>
@@ -168,7 +168,7 @@
                     </div>
                     <div class="flex gap-3">
                         @if($userRole === 'anggota')
-                        <a href="/dashboards/kegiatan/lapor" class="flex items-center gap-2 bg-admin-accent text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-purple-500/20 hover:bg-admin-accent/90 transition-all active:scale-95">
+                        <a href="/dashboards/kegiatans" class="flex items-center gap-2 bg-admin-accent text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-purple-500/20 hover:bg-admin-accent/90 transition-all active:scale-95">
                             <span class="material-symbols-outlined text-lg">add_circle</span>
                             Kelola Kegiatan
                         </a>
@@ -312,7 +312,7 @@
                             <h4 class="font-bold text-lg uppercase">Kegiatan Terbaru</h4>
                             <p class="text-xs text-[#594c9a]">Daftar input kegiatan terbaru dari sistem</p>
                         </div>
-                        <a href="/dashboards/kegiatan" class="bg-background-light dark:bg-[#2d284d] px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wide">Lihat Semua</a>
+                        <a href="/dashboards/kegiatans" class="bg-background-light dark:bg-[#2d284d] px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wide">Lihat Semua</a>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left">
