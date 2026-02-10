@@ -73,7 +73,7 @@
                 
                 <div class="pt-6">
                     <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a199c9] uppercase tracking-wider px-3 mb-2">Manajemen</p>
-                    <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a397e0] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/kegiatans">
+                    <a class="flex items-center gap-3 px-3 py-2 text-[#594c9a] dark:text-[#a397e0] hover:bg-primary/10 hover:text-primary rounded-lg transition-colors" href="/dashboards/kegiatan">
                         <span class="material-symbols-outlined text-[24px]">assignment</span>
                         <p class="text-sm font-medium leading-normal">Kegiatan</p>
                     </a>
