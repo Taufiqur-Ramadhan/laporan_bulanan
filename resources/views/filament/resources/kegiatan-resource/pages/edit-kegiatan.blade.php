@@ -33,11 +33,13 @@
         }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-family: 'Material Symbols Outlined' !important;
         }
         .active-nav {
             background-color: #3211d4;
             color: white !important;
         }
+        .active-nav span { color: white !important; }
         .standalone-dashboard {
             position: fixed;
             top: 0;
@@ -75,7 +77,7 @@
             </div>
             <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
                 <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider px-3 mb-2">Menu Utama</p>
-                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 transition-colors" href="/dashboards">
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards">
                     <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">dashboard</span>
                     <span class="text-sm font-medium text-[#100d1b] dark:text-white">Dashboard</span>
                 </a>
@@ -87,34 +89,34 @@
                         <span class="text-sm font-medium">Kegiatan</span>
                     </a>
                     @if($userRole === 'admin')
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors text-[#100d1b] dark:text-white" href="/dashboards/budgets">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/budgets">
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">payments</span>
-                        <span class="text-sm font-medium">Pengaturan Anggaran</span>
+                        <span class="text-sm font-medium text-[#100d1b] dark:text-white">Pengaturan Anggaran</span>
                     </a>
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors text-[#100d1b] dark:text-white" href="/dashboards/activity-logs">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/activity-logs">
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">receipt_long</span>
-                        <span class="text-sm font-medium">Log Aktivitas</span>
+                        <span class="text-sm font-medium text-[#100d1b] dark:text-white">Log Aktivitas</span>
                     </a>
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors text-[#100d1b] dark:text-white" href="/dashboards/users">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/users">
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">group</span>
-                        <span class="text-sm font-medium">Manajemen User</span>
+                        <span class="text-sm font-medium text-[#100d1b] dark:text-white">Manajemen User</span>
                     </a>
                     @endif
                 </div>
 
                 <div class="pt-6">
                     <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider px-3 mb-2">Pelaporan</p>
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors text-[#100d1b] dark:text-white" href="/dashboards/reports">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/reports">
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">description</span>
-                        <span class="text-sm font-medium">Export</span>
+                        <span class="text-sm font-medium text-[#100d1b] dark:text-white">Export</span>
                     </a>
                 </div>
 
                 <div class="pt-6">
                     <p class="text-[10px] font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider px-3 mb-2">System</p>
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors text-[#100d1b] dark:text-white" href="/dashboards/profile">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/profile">
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">person</span>
-                        <span class="text-sm font-medium">Profil Pengguna</span>
+                        <span class="text-sm font-medium text-[#100d1b] dark:text-white">Profil Pengguna</span>
                     </a>
                 </div>
             </nav>
@@ -148,7 +150,7 @@
                         
                         <div class="flex items-center gap-3 pl-2 group cursor-pointer">
                             <div class="flex flex-col items-end hidden sm:flex text-right">
-                                <span class="text-xs font-bold text-[#100d1b] dark:text-white leading-none">{{ $userName }}</span>
+                                <span class="text-xs font-bold text-[#100d1b] dark:text-white leading-none capitalize">{{ $userName }}</span>
                                 <span class="text-[10px] font-bold text-primary uppercase tracking-tighter mt-1">{{ $userRole }}</span>
                             </div>
                             <div class="size-10 rounded-xl overflow-hidden border-2 border-primary/10 group-hover:border-primary transition-all shadow-sm">
@@ -164,7 +166,7 @@
                 <div class="max-w-4xl mx-auto">
                     <div class="mb-8 flex items-center justify-between">
                         <div>
-                            <h1 class="text-3xl font-black tracking-tight text-[#100d1b] dark:text-white uppercase">Edit Kegiatan</h1>
+                            <h1 class="text-3xl font-bold tracking-tight text-[#100d1b] dark:text-white uppercase transition-colors">Edit Kegiatan</h1>
                             <p class="text-[#594c9a] dark:text-gray-400 mt-2 font-medium">Perbarui informasi laporan kegiatan yang telah diinput.</p>
                         </div>
                         @if(count($this->getHeaderActions()))
@@ -181,7 +183,7 @@
                             {{ $this->form }}
 
                             <div class="mt-8 pt-8 border-t border-[#e9e7f3] dark:border-white/10 flex items-center justify-end gap-4">
-                                <a href="/dashboards/kegiatans" class="px-6 py-2.5 rounded-xl border border-[#d3cfe7] dark:border-white/20 text-[#100d1b] dark:text-white font-bold text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                <a href="/dashboards/kegiatans" class="px-6 py-2.5 rounded-xl border border-[#d3cfe7] dark:border-white/20 text-[#100d1b] dark:text-white font-bold text-center text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                                     Batal
                                 </a>
                                 <button type="submit" class="px-8 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:bg-opacity-90 active:scale-[0.98] transition-all flex items-center gap-2">
@@ -193,7 +195,7 @@
                     </form>
 
                     <div class="mt-8 text-center pb-8">
-                        <p class="text-[10px] text-[#594c9a] dark:text-gray-500 uppercase tracking-widest font-bold">© 2024 SIGAT System - Seluruh Hak Cipta Dilindungi.</p>
+                        <p class="text-[10px] text-[#594c9a] dark:text-gray-500 uppercase tracking-widest font-bold">© {{ date('Y') }} SIGAT System - Seluruh Hak Cipta Dilindungi.</p>
                     </div>
                 </div>
             </div>
