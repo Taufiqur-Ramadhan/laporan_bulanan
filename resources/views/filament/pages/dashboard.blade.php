@@ -168,10 +168,21 @@
                         <p class="text-[#594c9a] dark:text-[#a397e0] text-sm mt-1">Overview statistik sistem dan manajemen kegiatan seluruh unit kerja.</p>
                     </div>
                     <div class="flex gap-3">
+                        @if($userRole === 'anggota')
                         <a href="/dashboards/kegiatans" class="flex items-center gap-2 bg-admin-accent text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-purple-500/20 hover:bg-admin-accent/90 transition-all active:scale-95">
                             <span class="material-symbols-outlined text-lg">add_circle</span>
                             Kelola Kegiatan
                         </a>
+                        @elseif($userRole === 'admin')
+                        <a href="/dashboards/reports" class="flex items-center gap-2 bg-admin-accent text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-purple-500/20 hover:bg-admin-accent/90 transition-all active:scale-95">
+                            <span class="material-symbols-outlined text-lg">description</span>
+                            Export Data
+                        </a>
+                        <a href="/dashboards/activity-logs" class="flex items-center gap-2 bg-white dark:bg-[#1a1630] text-[#100d1b] dark:text-white border border-[#e9e7f3] dark:border-[#2d284d] px-5 py-2.5 rounded-xl font-semibold text-sm shadow-sm hover:bg-gray-50 dark:hover:bg-[#2d284d] transition-all active:scale-95">
+                            <span class="material-symbols-outlined text-lg">history</span>
+                            Audit Log
+                        </a>
+                        @endif
                     </div>
                 </div>
 
