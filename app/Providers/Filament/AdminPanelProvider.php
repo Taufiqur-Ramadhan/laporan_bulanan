@@ -51,6 +51,10 @@ class AdminPanelProvider extends PanelProvider
                 'panels::body.end',
                 fn () => view('filament.components.footer'),
             )
+            ->renderHook(
+                'panels::body.end',
+                fn () => new \Illuminate\Support\HtmlString('<script src="' . asset('js/sigat-settings.js') . '?v=' . filemtime(public_path('js/sigat-settings.js')) . '"></script>'),
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

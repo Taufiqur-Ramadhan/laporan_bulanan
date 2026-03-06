@@ -63,7 +63,7 @@
                         <div class="flex items-center gap-1.5">
                             <h1 class="text-xl font-bold leading-none uppercase">SIGAT</h1>
                         </div>
-                        <p class="text-[#594c9a] dark:text-[#a397e0] text-xs font-medium uppercase tracking-tighter">Admin Control Center</p>
+                        <p class="text-[#594c9a] dark:text-[#a397e0] text-xs font-medium uppercase tracking-tighter">{{ $userRole === 'admin' ? 'Admin Control Center' : 'Sistem Input Kegiatan' }}</p>
                     </div>
                 </div>
             </div>
@@ -110,6 +110,10 @@
                         <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">person</span>
                         <span class="text-sm font-medium">Profil Pengguna</span>
                     </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors" href="/dashboards/settings">
+                        <span class="material-symbols-outlined text-[#594c9a] dark:text-[#a397e0] text-[20px]">settings</span>
+                        <span class="text-sm font-medium">Pengaturan</span>
+                    </a>
                 </div>
             </nav>
             <div class="p-4 border-t border-[#e9e7f3] dark:border-[#2d284d]">
@@ -142,9 +146,9 @@
                 </div>
                 <div class="flex items-center gap-6">
                     <div class="flex items-center gap-6 border-l border-[#e9e7f3] dark:border-[#2d284d] pl-6">
-                        <button class="relative p-1 text-[#594c9a] dark:text-[#a397e0] hover:bg-gray-50 dark:hover:bg-[#2d284d] rounded-full transition-colors">
+                        <button id="notif-btn" onclick="SIGAT.toggleNotifPanel()" class="relative p-1 text-[#594c9a] dark:text-[#a397e0] hover:bg-gray-50 dark:hover:bg-[#2d284d] rounded-full transition-colors">
                             <span class="material-symbols-outlined text-2xl">notifications</span>
-                            <span class="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1630]"></span>
+                            <span id="notif-badge" class="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1630]"></span>
                         </button>
                         
                         <div class="flex items-center gap-3 pl-2 group cursor-pointer">
