@@ -23,8 +23,24 @@ class EditKegiatan extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->visible(false), // Tombol kustom di blade yang memanggil via wire:click mountAction('delete')
         ];
+    }
+
+    public function save(bool $shouldRedirect = true, bool $shouldStayOnPage = false): void
+    {
+        try {
+            parent::save($shouldRedirect, $shouldStayOnPage);
+        } catch (\Throwable $e) {
+            \Filament\Notifications\Notification::make()
+                ->title('Gagal Menyimpan')
+                ->body($e->getMessage())
+                ->danger()
+                ->send();
+            
+            throw $e;
+        }
     }
 
     protected function mutateFormDataBeforeSave(array $data): array

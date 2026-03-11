@@ -57,6 +57,9 @@
         .dark .fi-input { background: rgba(255,255,255,0.05) !important; border-color: rgba(255,255,255,0.1) !important; color: #fff !important; }
         .fi-section { border-radius: 1rem !important; border: 1px solid #e9e7f3 !important; box-shadow: none !important; }
         .dark .fi-section { border-color: rgba(255,255,255,0.1) !important; background: #1a1630 !important; }
+        
+        /* Sembunyikan topbar bawaan Filament agar tidak dobel */
+        .fi-topbar { display: none !important; }
     </style>
 
     <div class="flex h-screen w-full overflow-hidden">
@@ -132,6 +135,13 @@
                         <span class="text-[10px] font-bold text-admin-accent uppercase">{{ $userRole }}</span>
                     </div>
                 </div>
+                <form action="/dashboards/logout" method="post" class="mt-2">
+                    @csrf
+                    <button type="submit" class="w-full flex items-center gap-2 px-3 py-1.5 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-sm">logout</span>
+                        Sign Out
+                    </button>
+                </form>
             </div>
         </aside>
 
@@ -173,16 +183,29 @@
                             <h1 class="text-3xl font-bold tracking-tight text-[#100d1b] dark:text-white transition-colors">Edit Kegiatan</h1>
                             <p class="text-[#594c9a] dark:text-gray-400 mt-2 font-medium">Perbarui informasi laporan kegiatan yang telah diinput sebelumnya.</p>
                         </div>
-                        @if(count($this->getHeaderActions()))
+                        @can('delete', $this->record)
                         <div class="flex items-center gap-3">
-                             @foreach($this->getHeaderActions() as $action)
-                                {{ $action }}
-                             @endforeach
+                            <button type="button"
+                                wire:click="mountAction('delete')"
+                                wire:confirm="Yakin ingin menghapus kegiatan ini? Tindakan ini tidak dapat dibatalkan."
+                                class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-bold text-sm hover:bg-red-100 dark:hover:bg-red-900/40 border border-red-200 dark:border-red-800 transition-colors">
+                                <span class="material-symbols-outlined text-lg">delete</span>
+                                Hapus
+                            </button>
                         </div>
-                        @endif
+                        @endcan
                     </div>
 
-                    <form wire:submit="save" class="space-y-6">
+                    <form class="space-y-6">
+                        @if ($errors->any())
+                            <div class="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                                <ul class="list-disc list-inside text-sm text-red-600 dark:text-red-400">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="bg-white dark:bg-[#1a1630] rounded-2xl shadow-sm border border-[#e9e7f3] dark:border-white/10 overflow-hidden p-8">
                             {{ $this->form }}
 
@@ -190,9 +213,22 @@
                                 <a href="/dashboards/kegiatans" class="px-6 py-2.5 rounded-xl border border-[#d3cfe7] dark:border-white/20 text-[#100d1b] dark:text-white font-bold text-center text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                                     Batal
                                 </a>
-                                <button type="submit" class="px-8 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:bg-opacity-90 active:scale-[0.98] transition-all flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-lg">save</span>
-                                    Simpan Perubahan
+                                <button type="button" 
+                                    wire:click="save"
+                                    wire:loading.attr="disabled"
+                                    wire:target="save"
+                                    class="px-8 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:bg-opacity-90 active:scale-[0.98] transition-all flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
+                                    <span wire:loading.remove wire:target="save" class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-lg">save</span>
+                                        Simpan Perubahan
+                                    </span>
+                                    <span wire:loading wire:target="save" class="flex items-center gap-2">
+                                        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Menyimpan...
+                                    </span>
                                 </button>
                             </div>
                         </div>

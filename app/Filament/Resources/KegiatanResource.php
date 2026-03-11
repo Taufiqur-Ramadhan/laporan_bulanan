@@ -55,6 +55,25 @@ class KegiatanResource extends Resource
                 ->preload()
                 ->required(),
 
+            Forms\Components\Select::make('bulan')
+                ->label('Bulan Kegiatan')
+                ->options([
+                    'Januari'   => 'Januari',
+                    'Februari'  => 'Februari',
+                    'Maret'     => 'Maret',
+                    'April'     => 'April',
+                    'Mei'       => 'Mei',
+                    'Juni'      => 'Juni',
+                    'Juli'      => 'Juli',
+                    'Agustus'   => 'Agustus',
+                    'September' => 'September',
+                    'Oktober'   => 'Oktober',
+                    'November'  => 'November',
+                    'Desember'  => 'Desember',
+                ])
+                ->placeholder('— Pilih Bulan —')
+                ->searchable(),
+
             Forms\Components\TextInput::make('anggaran')
                 ->label('Anggaran Kegiatan')
                 ->required()
@@ -74,7 +93,6 @@ class KegiatanResource extends Resource
                         ->label('Foto Sebelum')
                         ->image()
                         ->disk('public')
-                        ->visibility('public')
                         ->directory('kegiatan/before')
                         ->required(),
 
@@ -82,7 +100,6 @@ class KegiatanResource extends Resource
                         ->label('Foto Sesudah')
                         ->image()
                         ->disk('public')
-                        ->visibility('public')
                         ->directory('kegiatan/after')
                         ->required()
                 ]),

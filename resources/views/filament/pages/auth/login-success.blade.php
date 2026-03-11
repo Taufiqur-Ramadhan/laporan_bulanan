@@ -49,20 +49,30 @@
             50% { transform: translateX(0%); }
             100% { transform: translateX(100%); }
         }
+        /* Sembunyikan topbar bawaan Filament agar tidak bentrok dengan header kustom */
+        .fi-topbar,
+        header.fi-topbar,
+        nav.fi-topbar {
+            display: none !important;
+        }
+        /* Minimasi padding bawaan Filament yang meriservasi ruang topbar */
+        .fi-layout,
+        .fi-main-ctn,
+        .fi-main {
+            padding-top: 0 !important;
+        }
     </style>
 
     <header class="w-full bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800 px-6 md:px-10 py-3">
-        <div class="flex items-center">
+        <div class="flex items-center justify-between">
             <div class="flex items-center gap-3 text-primary">
                 <div class="size-8 flex items-center justify-center bg-transparent rounded-lg overflow-hidden">
                     <img src="/images/logo.png" alt="Logo" class="w-full h-full object-contain" />
                 </div>
                 <h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase">SIGAT</h2>
             </div>
-            <div class="flex items-center gap-6">
-                <div class="size-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border border-gray-100 dark:border-gray-800">
-                    <img alt="User Avatar" class="w-full h-full object-cover" src="{{ $userAvatar }}"/>
-                </div>
+            <div class="size-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border border-gray-100 dark:border-gray-800">
+                <img alt="User Avatar" class="w-full h-full object-cover" src="{{ $userAvatar }}"/>
             </div>
         </div>
     </header>

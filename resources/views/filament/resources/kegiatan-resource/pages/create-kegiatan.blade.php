@@ -132,6 +132,13 @@
                         <span class="text-[10px] font-bold text-admin-accent uppercase">{{ $userRole }}</span>
                     </div>
                 </div>
+                <form action="/dashboards/logout" method="post" class="mt-2">
+                    @csrf
+                    <button type="submit" class="w-full flex items-center gap-2 px-3 py-1.5 text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-lg transition-colors">
+                        <span class="material-symbols-outlined text-sm">logout</span>
+                        Sign Out
+                    </button>
+                </form>
             </div>
         </aside>
 

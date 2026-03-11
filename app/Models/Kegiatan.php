@@ -32,6 +32,7 @@ class Kegiatan extends Model
         'longitude',
         'catatan_revisi',
         'budget_id',
+        'bulan',
     ];
 
     protected $casts = [
