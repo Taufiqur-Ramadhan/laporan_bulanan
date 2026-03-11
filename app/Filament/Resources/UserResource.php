@@ -26,25 +26,54 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('role')
-                    ->options([
-                        'admin' => 'Admin',
-                        'anggota' => 'Anggota',
-                    ])
-                    ->required()
-                    ->native(false),
+                Forms\Components\Section::make('Informasi Dasar')
+                    ->icon('heroicon-o-user')
+                    ->schema([
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Nama Lengkap')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('email')
+                                    ->label('Alamat Email')
+                                    ->email()
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\Select::make('role')
+                                    ->label('Role')
+                                    ->options([
+                                        'admin'   => 'Admin',
+                                        'anggota' => 'Anggota',
+                                    ])
+                                    ->required()
+                                    ->native(false),
+                                Forms\Components\DateTimePicker::make('email_verified_at')
+                                    ->label('Email Diverifikasi'),
+                            ]),
+                    ]),
+
+                Forms\Components\Section::make('Ubah Password')
+                    ->icon('heroicon-o-lock-closed')
+                    ->description('Kosongkan jika tidak ingin mengubah password.')
+                    ->schema([
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('password')
+                                    ->label('Password Baru')
+                                    ->password()
+                                    ->maxLength(255)
+                                    ->dehydrateStateUsing(fn ($state) => !empty($state) ? bcrypt($state) : null)
+                                    ->dehydrated(fn ($state) => !empty($state))
+                                    ->required(fn (string $context) => $context === 'create'),
+                                Forms\Components\TextInput::make('password_confirmation')
+                                    ->label('Konfirmasi Password')
+                                    ->password()
+                                    ->maxLength(255)
+                                    ->dehydrated(false)
+                                    ->required(fn (string $context) => $context === 'create'),
+                            ]),
+                    ]),
             ]);
     }
 
