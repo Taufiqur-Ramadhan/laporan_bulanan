@@ -31,7 +31,10 @@ class EditKegiatan extends EditRecord
     public function save(bool $shouldRedirect = true, bool $shouldStayOnPage = false): void
     {
         try {
-            parent::save($shouldRedirect, $shouldStayOnPage);
+            parent::save(false, false); // jangan redirect dulu, kita redirect manual via JS
+
+            // Kirim event ke Alpine/browser agar blade bisa tampilkan animasi, lalu redirect
+            $this->dispatch('kegiatan-saved', redirectUrl: $this->getResource()::getUrl('index'));
         } catch (\Throwable $e) {
             \Filament\Notifications\Notification::make()
                 ->title('Gagal Menyimpan')
@@ -41,6 +44,11 @@ class EditKegiatan extends EditRecord
             
             throw $e;
         }
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 
     protected function mutateFormDataBeforeSave(array $data): array

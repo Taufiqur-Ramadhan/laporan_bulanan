@@ -60,7 +60,84 @@
         
         /* Sembunyikan topbar bawaan Filament agar tidak dobel */
         .fi-topbar { display: none !important; }
+
+        /* === Animasi Sukses Overlay === */
+        #success-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 200, 100, 0.12);
+            backdrop-filter: blur(6px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        #success-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .success-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 20px 60px rgba(3,200,100,0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        #success-overlay.show .success-card {
+            transform: scale(1);
+        }
+        .dark #success-overlay, .dark .success-card { /* handled in html */ }
+        .success-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #03c864, #00a550);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(3,200,100,0.4);
+            animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+        }
+        @keyframes pop {
+            from { transform: scale(0.5); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+        .success-check {
+            color: white;
+            font-size: 2.5rem;
+        }
+        .success-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #100d1b;
+        }
+        .success-subtitle {
+            font-size: 0.85rem;
+            color: #594c9a;
+        }
     </style>
+
+    <!-- Animasi Sukses Overlay -->
+    <div id="success-overlay">
+        <div class="success-card" id="success-card">
+            <div class="success-icon">
+                <span class="material-symbols-outlined success-check" style="font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;">check</span>
+            </div>
+            <div class="success-title">Perubahan Berhasil Disimpan!</div>
+            <div class="success-subtitle">Mengalihkan ke riwayat kegiatan...</div>
+            <div style="width:200px;height:4px;background:#e9e7f3;border-radius:999px;overflow:hidden;margin-top:4px">
+                <div id="progress-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#3211d4,#7c3aed);border-radius:999px;transition:width 1.8s linear;"></div>
+            </div>
+        </div>
+    </div>
 
     <div class="flex h-screen w-full overflow-hidden">
         <!-- Sidebar -->
@@ -242,3 +319,30 @@
         </main>
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('kegiatan-saved', (event) => {
+            const overlay  = document.getElementById('success-overlay');
+            const bar      = document.getElementById('progress-bar');
+            const redirectUrl = event.redirectUrl || '/dashboards/kegiatans';
+
+            // Ubah warna overlay gelap jika mode gelap aktif
+            if (document.documentElement.classList.contains('dark')) {
+                overlay.style.background = 'rgba(3,200,100,0.08)';
+                document.getElementById('success-card').style.background = '#1a1630';
+                document.querySelector('.success-title').style.color = '#fff';
+            }
+
+            overlay.classList.add('show');
+
+            // Animasi progress bar
+            setTimeout(() => { bar.style.width = '100%'; }, 50);
+
+            // Redirect setelah 2 detik
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 2000);
+        });
+    });
+</script>
