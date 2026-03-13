@@ -33,6 +33,14 @@ class EditProfile extends BaseEditProfile
             ]);
     }
 
+    public function save(): void
+    {
+        parent::save();
+
+        // Dispatch event ke browser untuk animasi sukses
+        $this->dispatch('profile-saved');
+    }
+
     public function getViewData(): array
     {
         return [

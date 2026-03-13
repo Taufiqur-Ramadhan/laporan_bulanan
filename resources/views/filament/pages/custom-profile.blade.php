@@ -53,7 +53,94 @@
             z-index: 9999;
             overflow: hidden;
         }
+
+        /* === Animasi Sukses - Profil === */
+        #profile-success-toast {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-120px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 12px 40px rgba(3,200,100,0.2), 0 2px 8px rgba(0,0,0,0.08);
+            border: 1.5px solid rgba(3,200,100,0.25);
+            min-width: 280px;
+            transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s ease;
+            opacity: 0;
+        }
+        #profile-success-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        .toast-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #03c864, #00a550);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(3,200,100,0.35);
+        }
+        .toast-check {
+            color: white;
+            font-size: 1.4rem;
+        }
+        .toast-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #100d1b;
+            line-height: 1.2;
+        }
+        .toast-sub {
+            font-size: 0.75rem;
+            color: #594c9a;
+            margin-top: 2px;
+        }
+        .toast-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: #e9e7f3;
+            border-radius: 0 0 1rem 1rem;
+            overflow: hidden;
+        }
+        .toast-progress-bar {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #03c864, #3211d4);
+            border-radius: 0 0 1rem 1rem;
+            transform-origin: left;
+            transform: scaleX(1);
+            transition: transform 2.2s linear;
+        }
+        .toast-progress-bar.shrink {
+            transform: scaleX(0);
+        }
     </style>
+
+    <!-- Toast Notifikasi Sukses Profil -->
+    <div id="profile-success-toast">
+        <div class="toast-icon">
+            <span class="material-symbols-outlined toast-check" style="font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;">check</span>
+        </div>
+        <div>
+            <div class="toast-title" id="toast-title-text">Profil Berhasil Diperbarui!</div>
+            <div class="toast-sub">Perubahan data Anda telah disimpan.</div>
+        </div>
+        <div class="toast-progress">
+            <div class="toast-progress-bar" id="toast-progress-bar"></div>
+        </div>
+    </div>
+
     <!-- Sidebar -->
     <aside class="w-72 bg-white dark:bg-[#1a1630] border-r border-[#e9e7f3] dark:border-[#2d284d] flex flex-col shrink-0 hidden md:flex">
         <div class="p-6">
@@ -298,3 +385,35 @@
         </main>
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('profile-saved', () => {
+            const toast    = document.getElementById('profile-success-toast');
+            const bar      = document.getElementById('toast-progress-bar');
+            const titleEl  = document.getElementById('toast-title-text');
+
+            // Dark mode support
+            if (document.documentElement.classList.contains('dark')) {
+                toast.style.background = '#1a1630';
+                toast.style.borderColor = 'rgba(3,200,100,0.3)';
+                titleEl.style.color = '#ffffff';
+            }
+
+            toast.classList.add('show');
+
+            // Mulai animasi progress bar mengecil
+            setTimeout(() => { bar.classList.add('shrink'); }, 50);
+
+            // Sembunyikan toast setelah 2.5 detik
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2600);
+
+            // Reset state untuk penggunaan berikutnya
+            setTimeout(() => {
+                bar.classList.remove('shrink');
+            }, 3000);
+        });
+    });
+</script>
