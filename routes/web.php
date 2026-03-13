@@ -1,6 +1,5 @@
-<?php
-
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +36,10 @@ Route::middleware(['auth'])->group(function () {
     // Route export laporan (bypass Filament Livewire agar bisa download file langsung)
     Route::get('/dashboards/reports/export-excel', [ExportController::class, 'excel'])->name('reports.export.excel');
     Route::get('/dashboards/reports/export-word', [ExportController::class, 'word'])->name('reports.export.word');
+
+    // Notifikasi lonceng API
+    Route::get('/dashboards/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/dashboards/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.read-all');
+    Route::post('/dashboards/notifications/{id}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
 });
+

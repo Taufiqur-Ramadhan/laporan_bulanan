@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\KegiatanResource\Pages;
 use App\Filament\Resources\KegiatanResource\RelationManagers;
 use App\Models\Kegiatan;
+use App\Notifications\KegiatanStatusNotification;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -314,11 +315,21 @@ class KegiatanResource extends Resource
                     ->color('success')
                     ->visible(fn ($record) => auth()->user()->isAdmin() && $record->status === 'pending')
                     ->requiresConfirmation()
-                    ->action(fn ($record) => $record->update([
-                        'status' => 'approved',
-                        'verified_by' => auth()->id(),
-                        'verified_at' => now(),
-                    ])),
+                    ->action(function ($record) {
+                        $record->update([
+                            'status'      => 'approved',
+                            'verified_by' => auth()->id(),
+                            'verified_at' => now(),
+                        ]);
+                        // Kirim notifikasi ke pelapor
+                        if ($record->user && $record->user->id !== auth()->id()) {
+                            $record->user->notify(new KegiatanStatusNotification(
+                                kegiatan:  $record,
+                                status:    'approved',
+                                actorName: auth()->user()->name,
+                            ));
+                        }
+                    }),
 
                 Tables\Actions\Action::make('revision')
                     ->label('Revisi')
@@ -331,12 +342,23 @@ class KegiatanResource extends Resource
                             ->required()
                             ->rows(3),
                     ])
-                    ->action(fn ($record, array $data) => $record->update([
-                        'status' => 'revision',
-                        'catatan_revisi' => $data['catatan_revisi'],
-                        'verified_by' => auth()->id(),
-                        'verified_at' => now(),
-                    ])),
+                    ->action(function ($record, array $data) {
+                        $record->update([
+                            'status'          => 'revision',
+                            'catatan_revisi'  => $data['catatan_revisi'],
+                            'verified_by'     => auth()->id(),
+                            'verified_at'     => now(),
+                        ]);
+                        // Kirim notifikasi ke pelapor
+                        if ($record->user && $record->user->id !== auth()->id()) {
+                            $record->user->notify(new KegiatanStatusNotification(
+                                kegiatan:  $record,
+                                status:    'revision',
+                                actorName: auth()->user()->name,
+                                notes:     $data['catatan_revisi'],
+                            ));
+                        }
+                    }),
 
                 Tables\Actions\Action::make('reject')
                     ->label('Tolak')
@@ -344,11 +366,21 @@ class KegiatanResource extends Resource
                     ->color('danger')
                     ->visible(fn ($record) => auth()->user()->isAdmin() && $record->status === 'pending')
                     ->requiresConfirmation()
-                    ->action(fn ($record) => $record->update([
-                        'status' => 'rejected',
-                        'verified_by' => auth()->id(),
-                        'verified_at' => now(),
-                    ])),
+                    ->action(function ($record) {
+                        $record->update([
+                            'status'      => 'rejected',
+                            'verified_by' => auth()->id(),
+                            'verified_at' => now(),
+                        ]);
+                        // Kirim notifikasi ke pelapor
+                        if ($record->user && $record->user->id !== auth()->id()) {
+                            $record->user->notify(new KegiatanStatusNotification(
+                                kegiatan:  $record,
+                                status:    'rejected',
+                                actorName: auth()->user()->name,
+                            ));
+                        }
+                    }),
 
                 Tables\Actions\EditAction::make()
                     ->visible(fn ($record) => 
