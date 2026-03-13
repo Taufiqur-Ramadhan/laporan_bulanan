@@ -339,7 +339,7 @@
                                         <span class="text-[10px] text-[#594c9a]">ID: ACT-{{ str_pad($kegiatan->id, 5, '0', STR_PAD_LEFT) }}</span>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <span class="text-xs font-semibold">{{ $kegiatan->user->name }}</span>
+                                        <span class="text-xs font-semibold">{{ $kegiatan->user?->name ?? 'User Terhapus' }}</span>
                                     </td>
                                     <td class="px-6 py-4">
                                         <span class="text-xs font-bold text-primary">Rp {{ number_format($kegiatan->anggaran, 0, ',', '.') }}</span>

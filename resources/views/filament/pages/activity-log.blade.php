@@ -292,7 +292,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             @if($log->causer)
-                                            <p class="text-sm font-semibold text-[#100d1b] dark:text-white capitalize">{{ $log->causer->name }}</p>
+                                            <p class="text-sm font-semibold text-[#100d1b] dark:text-white capitalize">{{ $log->causer?->name ?? 'Sistem' }}</p>
                                             <p class="text-[10px] font-bold text-primary uppercase">{{ $log->causer->role ?? '-' }}</p>
                                             @else
                                             <p class="text-sm font-semibold text-[#594c9a] dark:text-[#a397e0]">Sistem</p>
