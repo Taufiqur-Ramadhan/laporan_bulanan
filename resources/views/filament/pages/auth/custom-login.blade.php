@@ -111,11 +111,13 @@
                 <form wire:submit="authenticate" class="space-y-5">
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-1.5" for="email">Alamat Email*</label>
-                        <div class="relative">
-                            <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <input wire:model="data.email" class="w-full h-12 pl-10 pr-4 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-[#25223d] text-gray-900 dark:text-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-sm" id="email" placeholder="nama@instansi.go.id" type="email" required/>
+                        <div class="relative group">
+                            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <input wire:model="data.email" class="w-full h-12 pl-11 pr-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#25223d] text-gray-900 dark:text-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm placeholder:text-gray-400 dark:placeholder:text-gray-600" id="email" placeholder="nama@instansi.go.id" type="email" required/>
                         </div>
                     </div>
 
@@ -124,11 +126,13 @@
                             <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200" for="password">Kata Sandi*</label>
                             <a class="text-xs text-primary font-bold hover:underline" href="{{ url('/dashboards/password-reset/request') }}">Lupa Password?</a>
                         </div>
-                        <div class="relative" x-data="{ show: false }">
-                            <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                            </svg>
-                            <input wire:model="data.password" class="w-full h-12 pl-10 pr-10 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-[#25223d] text-gray-900 dark:text-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-sm" id="password" placeholder="••••••••" :type="show ? 'text' : 'password'" required/>
+                        <div class="relative group" x-data="{ show: false }">
+                            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </div>
+                            <input wire:model="data.password" class="w-full h-12 pl-11 pr-11 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#25223d] text-gray-900 dark:text-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-sm placeholder:text-gray-400 dark:placeholder:text-gray-600" id="password" placeholder="••••••••" :type="show ? 'text' : 'password'" required/>
                             <button class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" type="button" @click="show = !show">
                                 <template x-if="!show">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
