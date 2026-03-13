@@ -1,3 +1,5 @@
+<?php
+
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SocialiteController;
