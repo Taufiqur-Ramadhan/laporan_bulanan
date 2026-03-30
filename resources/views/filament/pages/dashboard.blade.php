@@ -174,12 +174,12 @@
                     </div>
                     <div class="flex gap-3">
                         @if($userRole === 'anggota')
-                        <a href="/dashboards/kegiatans" class="flex items-center gap-2 bg-admin-accent text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-purple-500/20 hover:bg-admin-accent/90 transition-all active:scale-95">
+                        <a href="/dashboards/kegiatans" class="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-95">
                             <span class="material-symbols-outlined text-lg">add_circle</span>
                             Kelola Kegiatan
                         </a>
                         @elseif($userRole === 'admin')
-                        <a href="/dashboards/reports" class="flex items-center gap-2 bg-admin-accent text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-purple-500/20 hover:bg-admin-accent/90 transition-all active:scale-95">
+                        <a href="/dashboards/reports" class="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-95">
                             <span class="material-symbols-outlined text-lg">description</span>
                             Export Data
                         </a>
