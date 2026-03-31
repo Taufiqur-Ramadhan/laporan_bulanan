@@ -42,10 +42,17 @@ class KegiatanStatusNotification extends Notification
             'rejected'  => 'danger',
         ];
 
+        $titles = [
+            'approved' => 'Kegiatan Disetujui',
+            'revision'  => 'Kegiatan Perlu Revisi',
+            'rejected'  => 'Kegiatan Ditolak',
+        ];
+
         return [
             'kegiatan_id'   => $this->kegiatan->id,
             'nama_kegiatan' => $this->kegiatan->nama_kegiatan,
             'status'        => $this->status,
+            'title'         => $titles[$this->status] ?? 'Status Diperbarui',
             'message'       => $messages[$this->status] ?? "Status laporan Anda telah diperbarui.",
             'icon'          => $icons[$this->status] ?? 'info',
             'color'         => $colors[$this->status] ?? 'info',

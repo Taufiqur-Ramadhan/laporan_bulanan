@@ -66,6 +66,8 @@
     .dark #notif-panel .notif-icon-wrap.danger  { background: rgba(220,38,38,0.2); }
     #notif-panel .notif-title { font-size: 0.8rem; font-weight: 700; color: #100d1b; line-height: 1.3; }
     .dark #notif-panel .notif-title { color: #fff; }
+    #notif-panel .notif-subtitle { font-size: 0.7rem; color: #594c9a; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dark #notif-panel .notif-subtitle { color: #a397e0; }
     #notif-panel .notif-time { font-size: 0.7rem; color: #594c9a; margin-top: 2px; }
 </style>
 
@@ -137,11 +139,12 @@
                     <div class="notif-icon-wrap ${d.color || 'info'}">
                         <span class="material-symbols-outlined text-[18px]"
                               style="font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24">
-                            ${iconMap[d.icon] || 'notifications'}
+                            ${iconMap[d.icon] || d.icon || 'notifications'}
                         </span>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p class="notif-title">${d.nama_kegiatan || '-'}</p>
+                        <p class="notif-title">${d.title || d.nama_kegiatan || '-'}</p>
+                        ${d.nama_kegiatan && d.title ? `<p class="notif-subtitle">${d.nama_kegiatan}</p>` : ''}
                         <p class="notif-time">${n.created_at}</p>
                         ${isNew ? '<span style="display:inline-block;margin-top:4px;width:6px;height:6px;border-radius:50%;background:#3211d4"></span>' : ''}
                     </div>

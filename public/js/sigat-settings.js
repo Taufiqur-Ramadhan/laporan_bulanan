@@ -15,12 +15,7 @@
         '#6366f1': { name: 'Violet', dark: '#4f46e5', sidebar: '#6366f1', badge: '#818cf8' },
     };
 
-    /* ── Notifications data (demo) ── */
-    const DEFAULT_NOTIFS = [
-        { id: 1, icon: 'assignment', color: 'text-amber-500', title: 'Laporan Baru Masuk', desc: 'Ada 3 kegiatan menunggu persetujuan.', time: 'Baru saja', unread: true },
-        { id: 2, icon: 'check_circle', color: 'text-emerald-500', title: 'Laporan Disetujui', desc: 'Kegiatan "Pelatihan K3" telah disetujui.', time: '5 menit lalu', unread: true },
-        { id: 3, icon: 'info', color: 'text-blue-500', title: 'Sistem Diperbarui', desc: 'SIGAT versi terbaru berhasil diinstal.', time: '1 jam lalu', unread: false },
-    ];
+    // Notifikasi dikelola oleh SIGAT_NOTIF (notif-panel.blade.php)
 
     /* ═══════════════════════════════════════════════
        TEMA
@@ -125,131 +120,20 @@
     }
 
     /* ═══════════════════════════════════════════════
-       NOTIFIKASI PANEL
+       NOTIFIKASI PANEL — Bridge ke sistem real
+       Panel asli di-render oleh notif-panel.blade.php
+       dan dikelola oleh window.SIGAT_NOTIF
     ═══════════════════════════════════════════════ */
-    function buildNotifPanel() {
-        /* Hapus panel lama jika ada */
-        const existing = document.getElementById('sigat-notif-panel');
-        if (existing) existing.remove();
-
-        const notifPrefs = JSON.parse(localStorage.getItem('sigat-notif-prefs') || '{}');
-        const systemEnabled = notifPrefs['notif-system'] !== false;
-        const notifs = systemEnabled ? DEFAULT_NOTIFS : DEFAULT_NOTIFS.filter(n => !n.unread);
-        const unreadCount = notifs.filter(n => n.unread).length;
-
-        /* Update badge */
-        const badge = document.getElementById('notif-badge');
-        if (badge) {
-            badge.style.display = unreadCount > 0 ? 'block' : 'none';
-        }
-
-        const panel = document.createElement('div');
-        panel.id = 'sigat-notif-panel';
-        panel.setAttribute('role', 'dialog');
-        panel.setAttribute('aria-label', 'Panel Notifikasi');
-        panel.style.cssText = `
-            display: none;
-            position: fixed;
-            top: 64px;
-            right: 16px;
-            width: 360px;
-            max-height: 480px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px -10px rgba(0,0,0,0.18);
-            border: 1px solid #e9e7f3;
-            z-index: 99999;
-            overflow: hidden;
-            flex-direction: column;
-        `;
-
-        /* Panel header */
-        const headerHtml = `
-            <div style="padding: 16px 20px; border-bottom: 1px solid #e9e7f3; display: flex; align-items: center; justify-content: space-between; background: white;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span class="material-symbols-outlined" style="font-size:20px; color: var(--sigat-primary, #3211d4);">notifications_active</span>
-                    <span style="font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">Notifikasi</span>
-                    ${unreadCount > 0 ? `<span style="background: var(--sigat-primary, #3211d4); color: white; font-size: 10px; font-weight: 900; padding: 1px 7px; border-radius: 99px;">${unreadCount}</span>` : ''}
-                </div>
-                <button onclick="SIGAT.markAllRead()" style="font-size: 11px; font-weight: 700; color: var(--sigat-primary, #3211d4); background: none; border: none; cursor: pointer;">Tandai Semua Dibaca</button>
-            </div>
-        `;
-
-        /* Notif items */
-        const itemsHtml = notifs.map(n => `
-            <div style="padding: 14px 20px; display: flex; align-items: flex-start; gap: 12px; border-bottom: 1px solid #f5f4fb; cursor: pointer; transition: background 0.15s; ${n.unread ? 'background: #f8f7ff;' : ''}"
-                 onmouseover="this.style.background='#f0f0fa'" onmouseout="this.style.background='${n.unread ? '#f8f7ff' : 'white'}'">
-                <span class="material-symbols-outlined ${n.color}" style="font-size: 22px; flex-shrink: 0; margin-top: 2px; font-variation-settings: 'FILL' 1;">${n.icon}</span>
-                <div style="flex: 1; min-width: 0;">
-                    <p style="font-weight: 700; font-size: 13px; margin: 0 0 2px;">${n.title}</p>
-                    <p style="font-size: 12px; color: #594c9a; margin: 0 0 4px;">${n.desc}</p>
-                    <p style="font-size: 10px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">${n.time}</p>
-                </div>
-                ${n.unread ? '<span style="width:8px; height:8px; background: var(--sigat-primary, #3211d4); border-radius: 99px; flex-shrink:0; margin-top: 6px;"></span>' : ''}
-            </div>
-        `).join('');
-
-        /* Empty state */
-        const emptyHtml = `
-            <div style="padding: 40px 20px; text-align: center;">
-                <span class="material-symbols-outlined" style="font-size: 40px; color: #e9e7f3;">notifications_off</span>
-                <p style="font-size: 13px; color: #9ca3af; margin-top: 8px;">Tidak ada notifikasi.</p>
-            </div>
-        `;
-
-        panel.innerHTML = `
-            ${headerHtml}
-            <div style="overflow-y: auto; max-height: 380px;">
-                ${notifs.length ? itemsHtml : emptyHtml}
-            </div>
-            <div style="padding: 10px 20px; border-top: 1px solid #e9e7f3; background: white;">
-                <a href="/dashboards/activity-logs" style="display: block; text-align: center; font-size: 12px; font-weight: 800; color: var(--sigat-primary, #3211d4); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em;">Lihat Log Aktivitas →</a>
-            </div>
-        `;
-
-        /* Dark mode support */
-        if (document.documentElement.classList.contains('dark')) {
-            panel.style.background = '#1a1630';
-            panel.style.borderColor = '#2d284d';
-            panel.querySelector('[style*="border-bottom"]').style.background = '#1a1630';
-        }
-
-        document.body.appendChild(panel);
-        return panel;
-    }
-
-    let notifPanelVisible = false;
-
     function toggleNotifPanel() {
-        const panel = document.getElementById('sigat-notif-panel') || buildNotifPanel();
-        notifPanelVisible = !notifPanelVisible;
-        panel.style.display = notifPanelVisible ? 'flex' : 'none';
-        if (notifPanelVisible) panel.style.flexDirection = 'column';
+        if (window.SIGAT_NOTIF) {
+            window.SIGAT_NOTIF.toggle();
+        }
     }
 
     function markAllRead() {
-        notifPanelVisible = false;
-        /* Rebuild panel dengan semua notif sebagai "dibaca" */
-        const existing = document.getElementById('sigat-notif-panel');
-        if (existing) existing.remove();
-        const badge = document.getElementById('notif-badge');
-        if (badge) badge.style.display = 'none';
-        /* Simpan status ke localStorage */
-        localStorage.setItem('sigat-notif-read', Date.now().toString());
-    }
-
-    /* Tutup panel jika klik di luar */
-    function _setupOutsideClick() {
-        document.addEventListener('click', function (e) {
-            const panel = document.getElementById('sigat-notif-panel');
-            const btn = document.getElementById('notif-btn');
-            if (panel && notifPanelVisible) {
-                if (!panel.contains(e.target) && (!btn || !btn.contains(e.target))) {
-                    notifPanelVisible = false;
-                    panel.style.display = 'none';
-                }
-            }
-        }, true);
+        if (window.SIGAT_NOTIF) {
+            window.SIGAT_NOTIF.markAllRead();
+        }
     }
 
     /* ═══════════════════════════════════════════════

@@ -24,7 +24,8 @@ class ListKegiatan extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-                ->label('Lapor Kegiatan'),
+                ->label('Lapor Kegiatan')
+                ->url(fn (): string => KegiatanResource::getUrl('create')),
         ];
     }
 }

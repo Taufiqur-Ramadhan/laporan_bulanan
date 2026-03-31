@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\KegiatanResource\Pages;
 
 use App\Filament\Resources\KegiatanResource;
+use App\Models\User;
+use App\Notifications\KegiatanBaruNotification;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
@@ -31,4 +33,25 @@ class CreateKegiatan extends CreateRecord
 
         return $data;
     }
+
+    protected function afterCreate(): void
+    {
+        // Kirim notifikasi ke semua admin saat anggota menginput kegiatan baru
+        $submitter = auth()->user();
+
+        // Jangan kirim notifikasi jika yang input adalah admin itu sendiri
+        if ($submitter->role === 'admin') {
+            return;
+        }
+
+        $admins = User::where('role', 'admin')->get();
+
+        foreach ($admins as $admin) {
+            $admin->notify(new KegiatanBaruNotification(
+                kegiatan:       $this->record,
+                subbmitterName: $submitter->name,
+            ));
+        }
+    }
 }
+
