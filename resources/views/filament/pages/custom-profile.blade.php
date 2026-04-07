@@ -347,13 +347,18 @@
                                         </div>
                                         <div class="flex flex-col gap-2 text-left">
                                             <label class="text-sm font-bold text-[#100d1b] dark:text-white">Unit Kerja</label>
-                                            <select wire:model="data.unit_kerja" class="w-full h-11 rounded-lg border-[#d3cfe7] dark:border-[#2d2a3d] bg-white dark:bg-[#131022] text-[#100d1b] dark:text-white focus:ring-primary focus:border-primary px-4 transition-all">
+                                            <select wire:model="data.unit_kerja" {{ (!auth()->user()->isAdmin() && !empty(auth()->user()->unit_kerja)) ? 'disabled' : '' }} class="w-full h-11 rounded-lg border-[#d3cfe7] dark:border-[#2d2a3d] bg-white dark:bg-[#131022] text-[#100d1b] dark:text-white focus:ring-primary focus:border-primary px-4 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
                                                 <option value="">Pilih Unit Kerja</option>
-                                                <option value="Teknologi Informasi">Teknologi Informasi</option>
-                                                <option value="Sumber Daya Manusia">Sumber Daya Manusia</option>
-                                                <option value="Perencanaan & Keuangan">Perencanaan & Keuangan</option>
-                                                <option value="Operasional">Operasional</option>
+                                                <option value="Dinas KOMINFO">Dinas KOMINFO</option>
+                                                <option value="Dinas Pangan">Dinas Pangan</option>
+                                                <option value="Dinas LH">Dinas LH</option>
+                                                <option value="Dinas PMD">Dinas PMD</option>
+                                                <option value="Dinas PPKB & P3A">Dinas PPKB & P3A</option>
+                                                <option value="Dinas Perumahan">Dinas Perumahan</option>
                                             </select>
+                                            @if(!auth()->user()->isAdmin() && !empty(auth()->user()->unit_kerja))
+                                                <p class="text-[10px] text-red-500 font-bold mt-1">Hanya Admin yang dapat mengubah Unit Kerja yang sudah tersimpan.</p>
+                                            @endif
                                         </div>
                                         <div class="md:col-span-2 flex flex-col gap-2 text-left">
                                             <label class="text-sm font-bold text-[#100d1b] dark:text-white">Alamat Kantor</label>

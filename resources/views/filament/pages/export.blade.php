@@ -241,6 +241,13 @@
                         <div class="p-8">
                             {{-- Filter ini akan di-pass sebagai query string ke link download --}}
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            
+                                <!-- Tanggal -->
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-xs font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider">Tanggal Spesifik</label>
+                                    <input type="date" id="filter-tanggal" class="w-full bg-[#f6f6f8] dark:bg-[#131022] border border-[#e9e7f3] dark:border-[#2d284d] rounded-lg px-4 py-3 text-sm text-[#100d1b] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                                    <p class="text-[10px] text-[#594c9a] mt-1 -mb-2">Isi jika ingin spesifik per hari.</p>
+                                </div>
 
                                 <!-- Bulan -->
                                 <div class="flex flex-col gap-2">
@@ -269,7 +276,9 @@
                                         <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#594c9a] dark:text-[#a397e0] pointer-events-none text-[20px]">expand_more</span>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 <!-- Status -->
                                 <div class="flex flex-col gap-2">
                                     <label class="text-xs font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider">Status Kegiatan</label>
@@ -284,10 +293,9 @@
                                         <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#594c9a] dark:text-[#a397e0] pointer-events-none text-[20px]">expand_more</span>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Unit Kerja -->
-                            <div class="flex flex-col gap-2 mb-8">
+                                <!-- Unit Kerja -->
+                                <div class="flex flex-col gap-2">
                                 <label class="text-xs font-bold text-[#594c9a] dark:text-[#a397e0] uppercase tracking-wider">Unit Kerja</label>
                                 <div class="relative">
                                     <select id="filter-unit-kerja" class="w-full bg-[#f6f6f8] dark:bg-[#131022] border border-[#e9e7f3] dark:border-[#2d284d] rounded-lg px-4 py-3 text-sm text-[#100d1b] dark:text-white focus:ring-2 focus:ring-primary focus:border-primary appearance-none transition-all">
@@ -299,11 +307,13 @@
                                     <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#594c9a] dark:text-[#a397e0] pointer-events-none text-[20px]">expand_more</span>
                                 </div>
                             </div>
+                            <!-- Akhir Grid Status & Unit Kerja -->
+                            </div>
 
                             <!-- Export Cards -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <!-- Excel Card -->
-                                <a id="btn-excel" href="#" onclick="doExport(event, 'excel')"
+                                <a id="btn-excel" href="#" onclick="openExcelModal(event)"
                                    class="export-card group relative flex flex-col items-start p-6 rounded-xl border-2 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-900/20 shadow-[0_0_20px_rgba(16,185,129,0.12)] text-left overflow-hidden cursor-pointer hover:shadow-[0_0_28px_rgba(16,185,129,0.22)]">
                                     <div class="size-12 bg-emerald-500 rounded-lg flex items-center justify-center text-white mb-4 shadow-lg shadow-emerald-500/20">
                                         <span class="material-symbols-outlined text-3xl">table_view</span>
@@ -321,7 +331,7 @@
                                 </a>
 
                                 <!-- Word Card -->
-                                <a id="btn-word" href="#" onclick="doExport(event, 'word')"
+                                <a id="btn-word" href="#" onclick="openWordModal(event)"
                                    class="export-card group relative flex flex-col items-start p-6 rounded-xl border-2 border-[#e9e7f3] dark:border-[#2d284d] bg-blue-50/30 dark:bg-blue-900/10 hover:border-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] text-left overflow-hidden cursor-pointer transition-all">
                                     <div class="size-12 bg-blue-500/20 dark:bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
                                         <span class="material-symbols-outlined text-3xl">description</span>
@@ -371,6 +381,106 @@
         </div>
     </div>
 
+    <!-- Modal Ekspor Excel -->
+    <div id="excel-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-[#100d1b]/40 dark:bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeExcelModal()"></div>
+        
+        <!-- Modal Card -->
+        <div class="relative bg-white dark:bg-[#1a1630] w-full max-w-lg rounded-xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-200" id="excel-modal-card">
+            <!-- Header -->
+            <div class="px-8 pt-8 pb-6 text-center">
+                <h2 class="text-2xl font-black text-primary dark:text-white tracking-tight">Opsi Ekspor Excel</h2>
+                <p class="text-[#594c9a] dark:text-[#a397e0] mt-2 text-sm leading-relaxed">Pilih format lembar kerja yang sesuai dengan kebutuhan pelaporan Anda.</p>
+            </div>
+            
+            <!-- Options Container -->
+            <div class="px-8 space-y-4">
+                <!-- Option A : Summary -->
+                <button id="opt-summary" onclick="selectExcelType('summary')" class="group w-full flex items-start p-5 rounded-xl border-2 border-primary bg-transparent hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all text-left">
+                    <div class="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 p-3 rounded-lg mr-4 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
+                        <span class="material-symbols-outlined block text-2xl">table_chart</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-[#100d1b] dark:text-white text-lg leading-tight">Tabel Rekapitulasi (1 Sheet)</h3>
+                        <p class="text-[#594c9a] dark:text-[#a397e0] text-sm mt-1">Semua data digabungkan dalam satu lembar kerja untuk analisis ringkas.</p>
+                    </div>
+                </button>
+                
+                <!-- Option B : Separated -->
+                <button id="opt-separated" onclick="selectExcelType('separated')" class="group w-full flex items-start p-5 rounded-xl border-2 border-[#e9e7f3] dark:border-[#2d284d] bg-transparent hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all text-left">
+                    <div class="bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 p-3 rounded-lg mr-4 transition-colors group-hover:bg-indigo-500 group-hover:text-white">
+                        <span class="material-symbols-outlined block text-2xl">layers</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-[#100d1b] dark:text-white text-lg leading-tight">Rincian Terpisah (Beda Sheet)</h3>
+                        <p class="text-[#594c9a] dark:text-[#a397e0] text-sm mt-1">Data dipisahkan berdasarkan kegiatan ke dalam lembar kerja berbeda.</p>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Footer -->
+            <div class="p-8 mt-4 bg-gray-50 dark:bg-[#131022] border-t border-[#e9e7f3] dark:border-[#2d284d] flex flex-col sm:flex-row-reverse gap-3">
+                <button onclick="confirmExcelModal(event)" class="flex-1 bg-primary text-white py-3 rounded-xl font-bold shadow-lg hover:bg-blue-800 transition-colors active:scale-95">
+                    Mulai Ekspor
+                </button>
+                <button onclick="closeExcelModal()" class="flex-1 bg-white dark:bg-[#1a1630] border border-[#e9e7f3] dark:border-[#2d284d] text-[#100d1b] dark:text-white py-3 rounded-xl font-bold hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors active:scale-95">
+                    Batal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ekspor Word -->
+    <div id="word-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-[#100d1b]/40 dark:bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeWordModal()"></div>
+        
+        <!-- Modal Card -->
+        <div class="relative bg-white dark:bg-[#1a1630] w-full max-w-lg rounded-xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-200" id="word-modal-card">
+            <!-- Header -->
+            <div class="px-8 pt-8 pb-6 text-center">
+                <h2 class="text-2xl font-black text-blue-600 dark:text-blue-400 tracking-tight">Opsi Ekspor Word</h2>
+                <p class="text-[#594c9a] dark:text-[#a397e0] mt-2 text-sm leading-relaxed">Pilih format dokumen Word yang sesuai dengan kebutuhan pelaporan Anda.</p>
+            </div>
+            
+            <!-- Options Container -->
+            <div class="px-8 space-y-4">
+                <!-- Option A : Detailed -->
+                <button id="opt-word-detailed" onclick="selectWordType('detailed')" class="group w-full flex items-start p-5 rounded-xl border-2 border-blue-500 bg-transparent hover:border-blue-500/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all text-left">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 p-3 rounded-lg mr-4 transition-colors group-hover:bg-blue-500 group-hover:text-white">
+                        <span class="material-symbols-outlined block text-2xl">description</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-[#100d1b] dark:text-white text-lg leading-tight">Format Rincian Lengkap</h3>
+                        <p class="text-[#594c9a] dark:text-[#a397e0] text-sm mt-1">Satu kegiatan per halaman, lengkap dengan deskripsi, keterangan, dan lampiran foto.</p>
+                    </div>
+                </button>
+                
+                <!-- Option B : Summary -->
+                <button id="opt-word-summary" onclick="selectWordType('summary')" class="group w-full flex items-start p-5 rounded-xl border-2 border-[#e9e7f3] dark:border-[#2d284d] bg-transparent hover:border-blue-500/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all text-left">
+                    <div class="bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 p-3 rounded-lg mr-4 transition-colors group-hover:bg-indigo-500 group-hover:text-white">
+                        <span class="material-symbols-outlined block text-2xl">toc</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-[#100d1b] dark:text-white text-lg leading-tight">Format Tabel Rekapitulasi</h3>
+                        <p class="text-[#594c9a] dark:text-[#a397e0] text-sm mt-1">Daftar baris tabel sederhana untuk merangkum seluruh kegiatan tanpa foto dokumentasi.</p>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Footer -->
+            <div class="p-8 mt-4 bg-gray-50 dark:bg-[#131022] border-t border-[#e9e7f3] dark:border-[#2d284d] flex flex-col sm:flex-row-reverse gap-3">
+                <button onclick="confirmWordModal(event)" class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition-colors active:scale-95">
+                    Mulai Ekspor
+                </button>
+                <button onclick="closeWordModal()" class="flex-1 bg-white dark:bg-[#1a1630] border border-[#e9e7f3] dark:border-[#2d284d] text-[#100d1b] dark:text-white py-3 rounded-xl font-bold hover:bg-gray-100 dark:hover:bg-[#2d284d] transition-colors active:scale-95">
+                    Batal
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== TOAST NOTIFIKASI SUKSES EXPORT ===== -->
     <div id="export-toast" role="alert"
          class="bg-emerald-600 text-white px-6 py-4 rounded-xl shadow-2xl items-center gap-3 border border-white/20 min-w-[320px]">
@@ -386,18 +496,124 @@
 
     <script>
         let toastTimer;
+        let activeExcelType = 'summary';
+        let activeWordType  = 'detailed';
 
-        function buildExportUrl(type) {
+        /* Ekspor EXCEL */
+        function openExcelModal(event) {
+            event.preventDefault();
+            const modal = document.getElementById('excel-modal');
+            const card  = document.getElementById('excel-modal-card');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeExcelModal() {
+            const modal = document.getElementById('excel-modal');
+            const card  = document.getElementById('excel-modal-card');
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        function selectExcelType(type) {
+            activeExcelType = type;
+            const btnSummary   = document.getElementById('opt-summary');
+            const btnSeparated = document.getElementById('opt-separated');
+            
+            if (type === 'summary') {
+                btnSummary.classList.add('border-primary');
+                btnSummary.classList.remove('border-[#e9e7f3]', 'dark:border-[#2d284d]');
+                
+                btnSeparated.classList.remove('border-primary');
+                btnSeparated.classList.add('border-[#e9e7f3]', 'dark:border-[#2d284d]');
+            } else {
+                btnSeparated.classList.add('border-primary');
+                btnSeparated.classList.remove('border-[#e9e7f3]', 'dark:border-[#2d284d]');
+                
+                btnSummary.classList.remove('border-primary');
+                btnSummary.classList.add('border-[#e9e7f3]', 'dark:border-[#2d284d]');
+            }
+        }
+
+        function confirmExcelModal(event) {
+            closeExcelModal();
+            doExport(event, 'excel', activeExcelType);
+        }
+
+        /* Ekspor WORD */
+        function openWordModal(event) {
+            event.preventDefault();
+            const modal = document.getElementById('word-modal');
+            const card  = document.getElementById('word-modal-card');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeWordModal() {
+            const modal = document.getElementById('word-modal');
+            const card  = document.getElementById('word-modal-card');
+            card.classList.remove('scale-100', 'opacity-100');
+            card.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        function selectWordType(type) {
+            activeWordType = type;
+            const btnDetailed = document.getElementById('opt-word-detailed');
+            const btnSummary  = document.getElementById('opt-word-summary');
+            
+            if (type === 'detailed') {
+                btnDetailed.classList.add('border-blue-500');
+                btnDetailed.classList.remove('border-[#e9e7f3]', 'dark:border-[#2d284d]');
+                
+                btnSummary.classList.remove('border-blue-500');
+                btnSummary.classList.add('border-[#e9e7f3]', 'dark:border-[#2d284d]');
+            } else {
+                btnSummary.classList.add('border-blue-500');
+                btnSummary.classList.remove('border-[#e9e7f3]', 'dark:border-[#2d284d]');
+                
+                btnDetailed.classList.remove('border-blue-500');
+                btnDetailed.classList.add('border-[#e9e7f3]', 'dark:border-[#2d284d]');
+            }
+        }
+
+        function confirmWordModal(event) {
+            closeWordModal();
+            doExport(event, 'word', activeWordType);
+        }
+
+        /* CORE EXPORT LOGIC */
+        function buildExportUrl(type, customType = null) {
+            const tanggal   = document.getElementById('filter-tanggal').value;
             const bulan     = document.getElementById('filter-bulan').value;
             const tahun     = document.getElementById('filter-tahun').value;
             const status    = document.getElementById('filter-status').value;
             const unitKerja = document.getElementById('filter-unit-kerja').value;
 
             const params = new URLSearchParams();
+            if (tanggal)   params.append('tanggal', tanggal);
             if (bulan)     params.append('bulan', bulan);
             if (tahun)     params.append('tahun', tahun);
             if (status)    params.append('status', status);
             if (unitKerja) params.append('unit_kerja', unitKerja);
+            
+            if (type === 'excel' && customType) {
+                params.append('excel_type', customType);
+            }
+            if (type === 'word' && customType) {
+                params.append('word_type', customType);
+            }
 
             const base = type === 'excel'
                 ? '/dashboards/reports/export-excel'
@@ -406,21 +622,19 @@
             return base + (params.toString() ? '?' + params.toString() : '');
         }
 
-        function doExport(event, type) {
-            event.preventDefault();
+        function doExport(event, type, customType = null) {
+            if (event) event.preventDefault();
 
-            const card = event.currentTarget;
-            card.classList.add('loading');
+            const card = document.getElementById('btn-' + type);
+            if (card) card.classList.add('loading');
 
-            // Mulai download via iframe tersembunyi agar halaman tidak reload
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';
-            iframe.src = buildExportUrl(type);
+            iframe.src = buildExportUrl(type, customType);
             document.body.appendChild(iframe);
 
-            // Simulasi selesai download setelah 2.5 detik
             setTimeout(() => {
-                card.classList.remove('loading');
+                if (card) card.classList.remove('loading');
                 document.body.removeChild(iframe);
 
                 const label = type === 'excel' ? 'Excel (.xlsx)' : 'Word (.docx)';

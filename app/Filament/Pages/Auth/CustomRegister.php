@@ -14,6 +14,28 @@ class CustomRegister extends Register
             ->layout('filament-panels::components.layout.base');
     }
 
+    public function form(\Filament\Forms\Form $form): \Filament\Forms\Form
+    {
+        return $form
+            ->schema([
+                $this->getNameFormComponent(),
+                $this->getEmailFormComponent(),
+                $this->getPasswordFormComponent(),
+                $this->getPasswordConfirmationFormComponent(),
+                \Filament\Forms\Components\Select::make('unit_kerja')
+                    ->options([
+                        'Teknologi Informasi' => 'Teknologi Informasi',
+                        'Sumber Daya Manusia' => 'Sumber Daya Manusia',
+                        'Perencanaan & Keuangan' => 'Perencanaan & Keuangan',
+                        'Operasional' => 'Operasional',
+                        'Umum & Logistik' => 'Umum & Logistik',
+                        'Pengawasan Internal' => 'Pengawasan Internal',
+                    ])
+                    ->required(),
+            ])
+            ->statePath('data');
+    }
+
     public function register(): ?\App\Http\Responses\Auth\CustomRegistrationResponse
     {
         try {

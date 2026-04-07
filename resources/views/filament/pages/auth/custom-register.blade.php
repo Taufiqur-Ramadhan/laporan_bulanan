@@ -59,6 +59,11 @@
             -webkit-font-feature-settings: 'liga';
             -webkit-font-smoothing: antialiased;
         }
+        /* Menyembunyikan ikon mata bawaan Microsoft Edge/IE */
+        input::-ms-reveal,
+        input::-ms-clear {
+            display: none;
+        }
     </style>
 
     <!-- Top Navigation -->
@@ -132,6 +137,25 @@
                     </div>
                 </div>
 
+                {{-- Unit Kerja --}}
+                <div class="text-left">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Unit Kerja*</label>
+                    <div class="relative">
+                        <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <select wire:model="data.unit_kerja" class="w-full pl-10 pr-4 h-11 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 rounded-lg focus:ring-primary focus:border-primary dark:text-white" required>
+                            <option value="">Pilih Unit Kerja</option>
+                            <option value="Dinas KOMINFO">Dinas KOMINFO</option>
+                            <option value="Dinas Pangan">Dinas Pangan</option>
+                            <option value="Dinas LH">Dinas LH</option>
+                            <option value="Dinas PMD">Dinas PMD</option>
+                            <option value="Dinas PPKB & P3A">Dinas PPKB & P3A</option>
+                            <option value="Dinas Perumahan">Dinas Perumahan</option>
+                        </select>
+                    </div>
+                </div>
+                
                 {{-- Password --}}
                 <div class="text-left" x-data="{ show: false }">
                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Kata Sandi*</label>

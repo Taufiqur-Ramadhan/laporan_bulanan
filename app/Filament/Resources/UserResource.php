@@ -48,6 +48,17 @@ class UserResource extends Resource
                                     ])
                                     ->required()
                                     ->native(false),
+                                Forms\Components\Select::make('unit_kerja')
+                                    ->label('Unit Kerja')
+                                    ->options([
+                                        'Dinas KOMINFO' => 'Dinas KOMINFO',
+                                        'Dinas Pangan' => 'Dinas Pangan',
+                                        'Dinas LH' => 'Dinas LH',
+                                        'Dinas PMD' => 'Dinas PMD',
+                                        'Dinas PPKB & P3A' => 'Dinas PPKB & P3A',
+                                        'Dinas Perumahan' => 'Dinas Perumahan',
+                                    ])
+                                    ->native(false),
                                 Forms\Components\DateTimePicker::make('email_verified_at')
                                     ->label('Email Diverifikasi'),
                             ]),
@@ -85,6 +96,12 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('unit_kerja')
+                    ->searchable()
+                    ->sortable()
+                    ->badge()
+                    ->color('info')
+                    ->default('-'),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),

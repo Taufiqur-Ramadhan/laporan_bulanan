@@ -43,6 +43,11 @@
             white-space: nowrap;
             animation: marquee 20s linear infinite;
         }
+        /* Menyembunyikan ikon mata bawaan Microsoft Edge/IE */
+        input::-ms-reveal,
+        input::-ms-clear {
+            display: none;
+        }
     </style>
 
     <!-- Top Navigation Bar -->
