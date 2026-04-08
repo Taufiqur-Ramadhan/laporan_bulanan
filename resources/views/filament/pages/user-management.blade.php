@@ -187,10 +187,13 @@
                     <span class="text-[#100d1b] dark:text-white font-bold">Manajemen User</span>
                 </div>
                 <div class="flex items-center gap-6 border-l border-[#e9e7f3] dark:border-[#2d284d] pl-6">
-                    <button id="notif-btn" onclick="SIGAT.toggleNotifPanel()" class="relative p-1 text-[#594c9a] dark:text-[#a397e0] hover:bg-gray-50 dark:hover:bg-[#2d284d] rounded-full transition-colors">
-                        <span class="material-symbols-outlined text-2xl">notifications</span>
-                        <span id="notif-badge" class="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1630]"></span>
-                    </button>
+                    <div class="relative">
+                        <button id="notif-btn" onclick="SIGAT.toggleNotifPanel()" class="relative p-1 text-[#594c9a] dark:text-[#a397e0] hover:bg-gray-50 dark:hover:bg-[#2d284d] rounded-full transition-colors">
+                            <span class="material-symbols-outlined text-2xl">notifications</span>
+                            <span id="notif-badge" class="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a1630]" style="display:none"></span>
+                        </button>
+                        @include('filament.components.notif-panel')
+                    </div>
                     <a href="/dashboards/profile" class="flex items-center gap-3 pl-2 group cursor-pointer">
                         <div class="flex flex-col items-end hidden sm:flex text-right">
                             <span class="text-xs font-bold text-[#100d1b] dark:text-white leading-none capitalize">{{ $userName }}</span>

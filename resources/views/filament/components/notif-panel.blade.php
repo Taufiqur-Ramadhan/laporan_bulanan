@@ -155,15 +155,22 @@
         },
 
         async markRead(id, url) {
-            await fetch('/dashboards/notifications/' + id + '/read', {
+            const res  = await fetch('/dashboards/notifications/' + id + '/read', {
                 method : 'POST',
                 headers: {
                     'X-CSRF-TOKEN'    : CSRF,
                     'X-Requested-With': 'XMLHttpRequest',
                 },
             });
-            if (url) window.location.href = url;
-            else this.fetch();
+            const json = await res.json();
+
+            // Gunakan redirect_url dari server (sudah dicek apakah kegiatan masih ada)
+            const redirectTo = json.redirect_url || url;
+            if (redirectTo) {
+                window.location.href = redirectTo;
+            } else {
+                this.fetch();
+            }
         },
 
         async markAllRead() {

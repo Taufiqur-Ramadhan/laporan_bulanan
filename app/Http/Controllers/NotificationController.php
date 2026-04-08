@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +35,29 @@ class NotificationController extends Controller
         $notification = Auth::user()->notifications()->findOrFail($id);
         $notification->markAsRead();
 
-        return response()->json(['ok' => true]);
+        // Tentukan URL redirect yang aman
+        $data         = $notification->data;
+        $originalUrl  = $data['url'] ?? null;
+        $kegiatanId   = $data['kegiatan_id'] ?? null;
+
+        // Jika notifikasi berisi kegiatan_id, cek apakah kegiatan masih ada
+        if ($kegiatanId && $originalUrl) {
+            $masihAda = Kegiatan::where('id', $kegiatanId)->exists();
+            if (!$masihAda) {
+                // Kegiatan sudah dihapus — arahkan ke daftar kegiatan
+                return response()->json([
+                    'ok'           => true,
+                    'redirect_url' => '/dashboards/kegiatans',
+                    'deleted'      => true,
+                ]);
+            }
+        }
+
+        return response()->json([
+            'ok'           => true,
+            'redirect_url' => $originalUrl,
+            'deleted'      => false,
+        ]);
     }
 
     /** POST /dashboards/notifications/read-all — tandai semua sebagai dibaca */
