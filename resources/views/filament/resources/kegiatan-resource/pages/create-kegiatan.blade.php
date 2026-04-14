@@ -1,6 +1,6 @@
 <div class="bg-background-light dark:bg-background-dark min-h-screen flex font-display standalone-dashboard overflow-hidden">
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -178,7 +178,7 @@
             <div class="flex-1 overflow-y-auto p-8">
                 <div class="max-w-4xl mx-auto">
                     <div class="mb-8">
-                        <h1 class="text-3xl font-bold tracking-tight text-[#100d1b] dark:text-white transition-colors">Input Kegiatan Baru</h1>
+                        <h1 class="text-3xl font-black tracking-tight text-[#100d1b] dark:text-white uppercase">Input Kegiatan Baru</h1>
                         <p class="text-[#594c9a] dark:text-gray-400 mt-2 font-medium">Lengkapi formulir di bawah ini untuk melaporkan kegiatan yang telah dilaksanakan.</p>
                     </div>
 

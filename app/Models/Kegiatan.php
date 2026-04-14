@@ -3,12 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 
 class Kegiatan extends Model
 {
     use LogsActivity;
+    
+    protected static function booted()
+    {
+        static::deleted(function ($kegiatan) {
+            // Hapus notifikasi yang berkaitan dengan kegiatan ini saat kegiatannya dihapus
+            DB::table('notifications')
+                ->where('data->kegiatan_id', $kegiatan->id)
+                ->delete();
+        });
+    }
 
     public function getActivitylogOptions(): LogOptions
     {

@@ -1,6 +1,6 @@
 <div class="bg-background-light dark:bg-background-dark min-h-screen flex font-display standalone-dashboard">
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
     <!-- Tailwind CDN for specific custom config -->
@@ -169,7 +169,7 @@
             <div class="flex-1 overflow-y-auto p-8 space-y-8">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div class="text-left">
-                        <h2 class="text-2xl font-bold text-[#100d1b] dark:text-white uppercase">Selamat datang, {{ $userName }}! 👋</h2>
+                        <h2 class="text-3xl font-black tracking-tight text-[#100d1b] dark:text-white uppercase">Selamat datang, {{ $userName }}! 👋</h2>
                         <p class="text-[#594c9a] dark:text-[#a397e0] text-sm mt-1">Overview statistik sistem dan manajemen kegiatan seluruh unit kerja.</p>
                     </div>
                     <div class="flex gap-3">
@@ -200,7 +200,7 @@
                             </div>
                         </div>
                         <p class="text-[#594c9a] dark:text-[#a397e0] text-[10px] font-bold uppercase tracking-wider text-left">Total Seluruh Kegiatan</p>
-                        <h3 class="text-2xl font-bold mt-1 text-left">{{ number_format($totalKegiatan) }}</h3>
+                        <h3 class="text-2xl font-black mt-1 text-left">{{ number_format($totalKegiatan) }}</h3>
                     </div>
                     <div class="bg-white dark:bg-[#1a1630] p-6 rounded-xl border border-[#e9e7f3] dark:border-[#2d284d] shadow-sm">
                         <div class="flex items-center justify-between mb-4">
@@ -209,7 +209,7 @@
                             </div>
                         </div>
                         <p class="text-[#594c9a] dark:text-[#a397e0] text-[10px] font-bold uppercase tracking-wider text-left">Menunggu Persetujuan</p>
-                        <h3 class="text-2xl font-bold mt-1 text-left">{{ number_format($pendingKegiatan) }}</h3>
+                        <h3 class="text-2xl font-black mt-1 text-left">{{ number_format($pendingKegiatan) }}</h3>
                     </div>
                     <div class="bg-white dark:bg-[#1a1630] p-6 rounded-xl border border-[#e9e7f3] dark:border-[#2d284d] shadow-sm">
                         <div class="flex items-center justify-between mb-4">
@@ -218,7 +218,7 @@
                             </div>
                         </div>
                         <p class="text-[#594c9a] dark:text-[#a397e0] text-[10px] font-bold uppercase tracking-wider text-left">Anggaran Terpakai</p>
-                        <h3 class="text-2xl font-bold mt-1 text-left">Rp {{ number_format($totalAnggaran / 1000000, 1) }}M</h3>
+                        <h3 class="text-2xl font-black mt-1 text-left">Rp {{ number_format($totalAnggaran / 1000000, 1) }}M</h3>
                     </div>
                     <div class="bg-white dark:bg-[#1a1630] p-6 rounded-xl border border-[#e9e7f3] dark:border-[#2d284d] shadow-sm">
                         <div class="flex items-center justify-between mb-4">
@@ -227,7 +227,7 @@
                             </div>
                         </div>
                         <p class="text-[#594c9a] dark:text-[#a397e0] text-[10px] font-bold uppercase tracking-wider text-left">Total User Aktif</p>
-                        <h3 class="text-2xl font-bold mt-1 text-left">{{ number_format($totalUser) }}</h3>
+                        <h3 class="text-2xl font-black mt-1 text-left">{{ number_format($totalUser) }}</h3>
                     </div>
                 </div>
 

@@ -1,8 +1,3 @@
-{{-- 
-    Bell Notification Panel Partial
-    Include di halaman yang punya ikon lonceng.
-    Penggunaan: @include('filament.components.notif-panel')
---}}
 
 <!-- Panel Notifikasi Lonceng -->
 <div id="notif-panel"
@@ -34,7 +29,6 @@
     <div class="px-5 py-3 border-t border-[#f0eff8] dark:border-white/5 text-center">
         <span class="text-[10px] text-[#594c9a] dark:text-[#a397e0] font-medium uppercase tracking-wider">SIGAT Notification Center</span>
     </div>
-</div>
 
 <style>
     #notif-panel .notif-item {
@@ -71,7 +65,7 @@
     #notif-panel .notif-time { font-size: 0.7rem; color: #594c9a; margin-top: 2px; }
 </style>
 
-<script>
+<script data-navigate-once>
 (function () {
     const CSRF = document.querySelector('meta[name="csrf-token"]')?.content || '';
 
@@ -135,20 +129,20 @@
                 const li = document.createElement('li');
                 li.className = 'notif-item' + (isNew ? ' unread' : '');
                 li.dataset.id = n.id;
-                li.innerHTML = `
+                li.innerHTML = (`
                     <div class="notif-icon-wrap ${d.color || 'info'}">
                         <span class="material-symbols-outlined text-[18px]"
                               style="font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24">
                             ${iconMap[d.icon] || d.icon || 'notifications'}
-                        </span>
-                    </div>
+                        </`+`span>
+                    </`+`div>
                     <div class="flex-1 min-w-0">
-                        <p class="notif-title">${d.title || d.nama_kegiatan || '-'}</p>
-                        ${d.nama_kegiatan && d.title ? `<p class="notif-subtitle">${d.nama_kegiatan}</p>` : ''}
-                        <p class="notif-time">${n.created_at}</p>
-                        ${isNew ? '<span style="display:inline-block;margin-top:4px;width:6px;height:6px;border-radius:50%;background:#3211d4"></span>' : ''}
-                    </div>
-                `;
+                        <p class="notif-title">${d.title || d.nama_kegiatan || '-'}</`+`p>
+                        ${d.nama_kegiatan && d.title ? \`<p class="notif-subtitle">\${d.nama_kegiatan}</\`+\`p>\` : ''}
+                        <p class="notif-time">${n.created_at}</`+`p>
+                        ${isNew ? '<span style="display:inline-block;margin-top:4px;width:6px;height:6px;border-radius:50%;background:#3211d4"></'+'span>' : ''}
+                    </`+`div>
+                `);
                 li.addEventListener('click', () => this.markRead(n.id, d.url));
                 list.appendChild(li);
             });
@@ -222,3 +216,4 @@
     }
 })();
 </script>
+</div>
